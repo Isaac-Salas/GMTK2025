@@ -32,3 +32,16 @@ folder_colors={
 "res://scenes/": "red",
 "res://scripts/": "blue"
 }
+
+[importer_defaults]
+
+csv_translation={
+"compress": true,
+"delimiter": 0
+}
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+textures/decals/filter=0
+textures/light_projectors/filter=0

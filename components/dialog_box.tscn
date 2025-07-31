@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://bljhsfid7fwt5"]
+
+[ext_resource type="Script" uid="uid://cdx5xiidh8dck" path="res://components/Dialog_Component.gd" id="2_c38jr"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_63amb"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rvd6q"]
+light_mode = 1
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vxbhg"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="DialogBox" type="RichTextLabel"]
+material = SubResource("CanvasItemMaterial_63amb")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = 66.0
+offset_right = 225.0
+offset_bottom = 297.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/line_separation = 25
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center][center]"
+fit_content = true
+scroll_active = false
+script = ExtResource("2_c38jr")
+Timerstart = true
+Typetime = 0.1
+Quickypetime = 0.05
+Dialog = PackedStringArray("", "...", "You wake up in a strange, desolate lab.", "You dont remember being a slime before.", "This place gives you the creeps.", "It might be a good idea to try and find a way OUT.")
+show_end = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+visible = false
+material = SubResource("CanvasItemMaterial_rvd6q")
+sprite_frames = SubResource("SpriteFrames_vxbhg")
+autoplay = "default"
+frame_progress = 0.127669
+centered = false
+offset = Vector2(-5, -22)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Bell" type="AudioStreamPlayer" parent="."]
+volume_db = 5.0
+
+[connection signal="Done" from="." to="." method="_on_done"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

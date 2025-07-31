@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=3 uid="uid://cim5ukairdcvq"]
+
+[ext_resource type="Texture2D" uid="uid://boh8i64e6ower" path="res://assets/Mundo/Mundo.png" id="1_4wyf3"]
+[ext_resource type="Script" uid="uid://qnwyioli2fxn" path="res://scenes/player/player.gd" id="2_k0juu"]
+[ext_resource type="Texture2D" uid="uid://n3drxxqjtaut" path="res://assets/Jugador/Placeholder.png" id="3_71j4m"]
+[ext_resource type="Script" uid="uid://pi5y46fygqd7" path="res://scripts/player_following_cam.gd" id="4_k0juu"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4wyf3"]
+
+[sub_resource type="Sky" id="Sky_k0juu"]
+sky_material = SubResource("PanoramaSkyMaterial_4wyf3")
+
+[sub_resource type="Environment" id="Environment_qfnet"]
+background_mode = 2
+background_color = Color(0.29997, 0.511606, 1, 1)
+sky = SubResource("Sky_k0juu")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_71j4m"]
+size = Vector3(0.65, 0.4, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4wyf3"]
+size = Vector3(190, 0.5, 190)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4wyf3"]
+viewport_path = NodePath("SubViewport")
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qfnet")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.452176, 0)
+script = ExtResource("2_k0juu")
+SPEED = 3.0
+
+[node name="Sprite3D2" type="Sprite3D" parent="CharacterBody3D"]
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_71j4m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.99956, 0.0296662, 0, -0.0296662, 0.99956, -0.00290492, 0.27447, 1.82546)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.803327, 0.595538, 0, -0.595538, 0.803327, 0, 1.68447, 3.08304)
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="Sprite3DFloor" type="Sprite3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+pixel_size = 0.1
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_4wyf3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_4wyf3")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" node_paths=PackedStringArray("Player")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 24.7367, 0)
+script = ExtResource("4_k0juu")
+Player = NodePath("../../CharacterBody3D")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 1098.0
+offset_top = 546.0
+offset_right = 1253.0
+offset_bottom = 701.0
+texture = SubResource("ViewportTexture_4wyf3")
+expand_mode = 1
