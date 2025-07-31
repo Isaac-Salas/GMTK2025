@@ -17,11 +17,12 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalPreloader="*res://components/global_preloader.gd"
+SaveManager="*res://components/SaveManager.gd"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=640
+window/size/viewport_height=360
 
 [file_customization]
 

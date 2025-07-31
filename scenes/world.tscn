@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cim5ukairdcvq"]
+[gd_scene load_steps=13 format=3 uid="uid://cim5ukairdcvq"]
 
 [ext_resource type="Texture2D" uid="uid://boh8i64e6ower" path="res://assets/Mundo/Mundo.png" id="1_4wyf3"]
 [ext_resource type="Script" uid="uid://qnwyioli2fxn" path="res://scenes/player/player.gd" id="2_k0juu"]
 [ext_resource type="Texture2D" uid="uid://n3drxxqjtaut" path="res://assets/Jugador/Placeholder.png" id="3_71j4m"]
 [ext_resource type="Script" uid="uid://pi5y46fygqd7" path="res://scripts/player_following_cam.gd" id="4_k0juu"]
+[ext_resource type="Script" uid="uid://d4b1nh3wdwixp" path="res://scripts/object_proto.gd" id="5_71j4m"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4wyf3"]
 
@@ -26,15 +27,17 @@ size = Vector3(190, 0.5, 190)
 [sub_resource type="ViewportTexture" id="ViewportTexture_4wyf3"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qfnet"]
+
 [node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qfnet")
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.1174, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("2_k0juu")
-clamp_offset = 2.0
+clamp_offset = 1.0
 
 [node name="Sprite3D2" type="Sprite3D" parent="Player"]
 billboard = 1
@@ -50,7 +53,7 @@ shape = SubResource("BoxShape3D_71j4m")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.803327, 0.595538, 0, -0.595538, 0.803327, 0, 1.68447, 3.08304)
+transform = Transform3D(0.965926, -0.258819, 0, -1.13133e-08, -4.2222e-08, 1, -0.258819, -0.965926, -4.37114e-08, 0, 23.6526, 0)
 shadow_enabled = true
 
 [node name="Floor" type="StaticBody3D" parent="."]
@@ -89,3 +92,14 @@ offset_right = 1253.0
 offset_bottom = 701.0
 texture = SubResource("ViewportTexture_4wyf3")
 expand_mode = 1
+
+[node name="ObjectProto" type="Node3D" parent="."]
+script = ExtResource("5_71j4m")
+Type = 1
+
+[node name="PlayerDetect" type="Area3D" parent="ObjectProto"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectProto/PlayerDetect"]
+shape = SubResource("BoxShape3D_qfnet")
+
+[connection signal="body_entered" from="ObjectProto/PlayerDetect" to="ObjectProto" method="_on_player_detect_body_entered"]
