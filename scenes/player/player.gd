@@ -24,7 +24,7 @@ func _physics_process(delta):
 	
 	global_position.z = clamp(global_position.z, clamp_min+clamp_offset,clamp_max-clamp_offset)
 	global_position.x = clamp (global_position.x, clamp_min+clamp_offset,clamp_max-clamp_offset)
-	print(global_position)
+	#print(global_position)
 	get_input_movement(delta)
 	move_and_slide()
 	

@@ -11,6 +11,8 @@ config_version=5
 [application]
 
 config/name="GMTK2025"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="GMTK2025"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,8 +23,9 @@ SaveManager="*res://components/SaveManager.gd"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
 
 [file_customization]
 
@@ -79,5 +82,7 @@ ui_down={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/decals/filter=0
 textures/light_projectors/filter=0

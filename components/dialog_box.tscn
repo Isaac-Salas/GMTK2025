@@ -18,17 +18,16 @@ animations = [{
 
 [node name="DialogBox" type="RichTextLabel"]
 material = SubResource("CanvasItemMaterial_63amb")
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -225.0
-offset_top = 66.0
+offset_top = -231.0
 offset_right = 225.0
-offset_bottom = 297.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_constants/line_separation = 25

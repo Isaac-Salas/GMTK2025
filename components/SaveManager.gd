@@ -1,41 +1,41 @@
 extends Node
 
 
-var Habilidad1 : bool = false
+var Habilidad1_1 : bool = false
 var Ardilla1_1 : bool = false
 var Ardilla1_2: bool = false
 var Ardilla1_3 : bool = false
 var Chicle1_1: bool = false
 var Chicle1_2 : bool = false
 var Chicle1_3 : bool = false
-var Buff1: bool = false
+var Buff1_1: bool = false
 
-var Habilidad2 : bool = false
+var Habilidad2_1 : bool = false
 var Ardilla2_1 : bool = false
 var Ardilla2_2: bool = false
 var Ardilla2_3 : bool = false
 var Chicle2_1: bool = false
 var Chicle2_2 : bool = false
 var Chicle2_3 : bool = false
-var Buff2: bool = false
+var Buff2_1: bool = false
 
-var Habilidad3 : bool = false
+var Habilidad3_1 : bool = false
 var Ardilla3_1 : bool = false
 var Ardilla3_2: bool = false
 var Ardilla3_3 : bool = false
 var Chicle3_1: bool = false
 var Chicle3_2 : bool = false
 var Chicle3_3 : bool = false
-var Buff3: bool = false
+var Buff3_1: bool = false
 
-var Habilidad4 : bool = false
+var Habilidad4_1 : bool = false
 var Ardilla4_1 : bool = false
 var Ardilla4_2: bool = false
 var Ardilla4_3 : bool = false
 var Chicle4_1: bool = false
 var Chicle4_2 : bool = false
 var Chicle4_3 : bool = false
-var Buff4: bool = false
+var Buff4_1: bool = false
 
 
 
@@ -50,41 +50,41 @@ func setter(variabletoset : String, value ):
 
 func save():
 	save_dict = {
-		"Habilidad1" : Habilidad1,
+		"Habilidad1_1" : Habilidad1_1,
 		"Ardilla1_1" : Ardilla1_1,
 		"Ardilla1_2" : Ardilla1_2,
 		"Ardilla1_3" : Ardilla1_3,
 		"Chicle1_1" : Chicle1_1,
 		"Chicle1_2" : Chicle1_2,
 		"Chicle1_3" : Chicle1_3,
-		"Buff1" : Buff1,
+		"Buff1_1" : Buff1_1,
 		
-		"Habilidad2" : Habilidad2,
+		"Habilidad2_1" : Habilidad2_1,
 		"Ardilla2_1" : Ardilla2_1,
 		"Ardilla2_2" : Ardilla2_2,
 		"Ardilla2_3" : Ardilla2_3,
 		"Chicle2_1" : Chicle2_1,
 		"Chicle2_2" : Chicle2_2,
 		"Chicle2_3" : Chicle2_3,
-		"Buff2" : Buff2,
+		"Buff2_1" : Buff2_1,
 	
-		"Habilidad3" : Habilidad3,
+		"Habilidad3_1" : Habilidad3_1,
 		"Ardilla3_1" : Ardilla3_1,
 		"Ardilla3_2" : Ardilla3_2,
 		"Ardilla3_3" : Ardilla3_3,
 		"Chicle3_1" : Chicle3_1,
 		"Chicle3_2" : Chicle3_2,
 		"Chicle3_3" : Chicle3_3,
-		"Buff3" : Buff3,
+		"Buff3_1" : Buff3_1,
 		
-		"Habilidad4" : Habilidad4,
+		"Habilidad4_1" : Habilidad4_1,
 		"Ardilla4_1" : Ardilla4_1,
 		"Ardilla4_2" : Ardilla4_2,
 		"Ardilla4_3" : Ardilla4_3,
 		"Chicle4_1" : Chicle4_1,
 		"Chicle4_2" : Chicle4_2,
 		"Chicle4_3" : Chicle4_3,
-		"Buff4" : Buff4
+		"Buff4_1" : Buff4_1
 		
 	}
 	return save_dict
@@ -108,6 +108,7 @@ func save_game():
 
 func load_game():
 	if not FileAccess.file_exists("user://savegame.save"):
+		print("Nah")
 		return # Error! We don't have a save to load.
 
 
