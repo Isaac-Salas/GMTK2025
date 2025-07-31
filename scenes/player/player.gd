@@ -1,29 +1,27 @@
 extends CharacterBody3D
 class_name Player
 
+@export var speed = 5
+@onready var sprite = $Sprite
+var input_direction : Vector2
+var colors_struck : Array[int] = [0,0]
+@export var clamp_max : float = -48.0
+@export var clamp_min : float = 48.0
+@export var clamp_offset : float
 
-@export var SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+signal color_queue_updated(color_queue : Array[int])
+# Getting the input inside a 2D Vector and setting the velocity accordingly
+func get_input_movement(delta):
+	input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	#print (input_direction)
+	self.velocity.x = input_direction.x * speed
+	self.velocity.z = input_direction.y * speed
 
-
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+func _physics_process(delta):
+	
+	clamp(position.z, clamp_min-clamp_offset,clamp_max-clamp_offset)
+	clamp(position.x, clamp_min-clamp_offset,clamp_max-clamp_offset)
+	print(global_position)
+	get_input_movement(delta)
 	move_and_slide()
+	

@@ -31,23 +31,23 @@ viewport_path = NodePath("SubViewport")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qfnet")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.452176, 0)
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.1174, 0.5, 0)
 script = ExtResource("2_k0juu")
-SPEED = 3.0
+clamp_offset = 2.0
 
-[node name="Sprite3D2" type="Sprite3D" parent="CharacterBody3D"]
+[node name="Sprite3D2" type="Sprite3D" parent="Player"]
 billboard = 1
 shaded = true
 alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("3_71j4m")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("BoxShape3D_71j4m")
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.99956, 0.0296662, 0, -0.0296662, 0.99956, -0.00290492, 0.27447, 1.82546)
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.803327, 0.595538, 0, -0.595538, 0.803327, 0, 1.68447, 3.08304)
@@ -57,7 +57,7 @@ shadow_enabled = true
 
 [node name="Sprite3DFloor" type="Sprite3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-pixel_size = 0.1
+pixel_size = 0.05
 shaded = true
 alpha_cut = 1
 texture_filter = 0
@@ -71,7 +71,7 @@ shape = SubResource("BoxShape3D_4wyf3")
 [node name="Camera3D" type="Camera3D" parent="SubViewport" node_paths=PackedStringArray("Player")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 24.7367, 0)
 script = ExtResource("4_k0juu")
-Player = NodePath("../../CharacterBody3D")
+Player = NodePath("../../Player")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
