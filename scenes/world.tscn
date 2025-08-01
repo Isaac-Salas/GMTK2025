@@ -1,12 +1,24 @@
-[gd_scene load_steps=13 format=3 uid="uid://cim5ukairdcvq"]
+[gd_scene load_steps=22 format=3 uid="uid://cim5ukairdcvq"]
 
 [ext_resource type="Texture2D" uid="uid://boh8i64e6ower" path="res://assets/Mundo/Mundo.png" id="1_4wyf3"]
 [ext_resource type="Script" uid="uid://n6gujomtfngi" path="res://scenes/world.gd" id="1_qfnet"]
 [ext_resource type="PackedScene" uid="uid://cxd4h0hh6n80h" path="res://scenes/player/player.tscn" id="2_qfnet"]
-[ext_resource type="Texture2D" uid="uid://cmiwcqi6a1yhb" path="res://assets/Mundo/Mundo_n.png" id="4_i7141"]
+[ext_resource type="Texture2D" uid="uid://d3f4w4evjj14n" path="res://assets/Mundo/MundoDetalle_n.png" id="4_i7141"]
 [ext_resource type="Script" uid="uid://pi5y46fygqd7" path="res://scripts/player_following_cam.gd" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://4eywlb6lbhnu" path="res://scenes/objects/chicle.tscn" id="6_7r4gi"]
+[ext_resource type="Shader" uid="uid://wn5xpb2kng6i" path="res://shaders/Pasto&Misc.gdshader" id="6_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://di5hhah4ccxv6" path="res://scenes/objects/ardilla.tscn" id="7_w7kh3"]
+[ext_resource type="Texture2D" uid="uid://cjofim1u2voko" path="res://assets/kenney_tiny-town/Tiles/tile_0016.png" id="8_4mrxx"]
+[ext_resource type="Texture2D" uid="uid://d2e7ee83nfofv" path="res://assets/Obstaculos/Piedra.png" id="9_7r4gi"]
+[ext_resource type="Script" uid="uid://bwvjpbm4ekwte" path="res://components/riesgo_comp.gd" id="10_e3hyu"]
+
+[sub_resource type="Gradient" id="Gradient_i7141"]
+offsets = PackedFloat32Array(0, 0.3, 0.6, 1)
+colors = PackedColorArray(0.156863, 0.156863, 0.180392, 1, 0.423529, 0.337255, 0.513726, 1, 0.627451, 0.509804, 0.517647, 1, 1, 0.968627, 0.894118, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4mrxx"]
+gradient = SubResource("Gradient_i7141")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4wyf3"]
 
@@ -17,18 +29,37 @@ sky_material = SubResource("PanoramaSkyMaterial_4wyf3")
 background_mode = 2
 background_color = Color(0.29997, 0.511606, 1, 1)
 sky = SubResource("Sky_k0juu")
+fog_light_color = Color(0.22431, 0.246636, 0.281735, 1)
 volumetric_fog_density = 0.0
 adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture1D_4mrxx")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7141"]
 transparency = 1
 blend_mode = 3
+roughness_texture_channel = 3
 normal_enabled = true
-normal_scale = -2.96
+normal_scale = 0.5
 normal_texture = ExtResource("4_i7141")
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+grow_amount = 4.055
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4wyf3"]
 size = Vector3(190, 0.5, 190)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q5onr"]
+render_priority = 0
+shader = ExtResource("6_w7kh3")
+shader_parameter/grass_texture = ExtResource("8_4mrxx")
+shader_parameter/gradient_blend = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_jhx03"]
+material = SubResource("ShaderMaterial_q5onr")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jhx03"]
+size = Vector3(2.2, 2, 2.2)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_qfnet")
@@ -38,12 +69,24 @@ environment = SubResource("Environment_qfnet")
 
 [node name="Player" parent="." instance=ExtResource("2_qfnet")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.237, 0.5, 33.2014)
+speed = 5.0
+sprint_speed = 10.0
+clamp_max = 48.0
+clamp_min = -48.0
 override = true
 ardillas = 2
 chicles = 3
+reset_contadores = false
+duracion_timer = 2.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.99244, 0)
+light_energy = 0.2
+light_bake_mode = 1
+omni_range = 4.117
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 23.6526, 0)
+transform = Transform3D(0.939693, 2.63612e-09, 0.34202, -0.34202, 1.49502e-08, 0.939693, -2.63612e-09, -1, 1.49502e-08, 0, 6.49755, 0)
 shadow_enabled = true
 
 [node name="PlayerFollower" type="Camera3D" parent="." node_paths=PackedStringArray("Player")]
@@ -56,6 +99,7 @@ Player = NodePath("../Player")
 [node name="Sprite3DFloor" type="Sprite3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 material_overlay = SubResource("StandardMaterial3D_i7141")
+modulate = Color(0.787759, 0.787759, 0.787759, 1)
 pixel_size = 0.05
 shaded = true
 alpha_cut = 1
@@ -64,6 +108,10 @@ texture = ExtResource("1_4wyf3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_4wyf3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.381811, 0)
+mesh = SubResource("QuadMesh_jhx03")
 
 [node name="Chicle" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_7r4gi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.33, 0, 44.87)
@@ -78,3 +126,52 @@ player = NodePath("../Player")
 Zona = 1
 Numero = 1
 Eterno = true
+
+[node name="Obstaculo" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7643, 0, 37.239)
+script = ExtResource("10_e3hyu")
+
+[node name="Area3D" type="Area3D" parent="Obstaculo"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstaculo/Area3D"]
+shape = SubResource("BoxShape3D_jhx03")
+
+[node name="Sprite3D" type="Sprite3D" parent="Obstaculo"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.1, 0)
+alpha_cut = 1
+texture = ExtResource("9_7r4gi")
+
+[node name="Obstaculo2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7643, 0, 35.4251)
+script = ExtResource("10_e3hyu")
+
+[node name="Area3D" type="Area3D" parent="Obstaculo2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstaculo2/Area3D"]
+shape = SubResource("BoxShape3D_jhx03")
+
+[node name="Sprite3D" type="Sprite3D" parent="Obstaculo2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.1, 0)
+alpha_cut = 1
+texture = ExtResource("9_7r4gi")
+
+[node name="Obstaculo3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7643, 0, 33.5981)
+script = ExtResource("10_e3hyu")
+
+[node name="Area3D" type="Area3D" parent="Obstaculo3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstaculo3/Area3D"]
+shape = SubResource("BoxShape3D_jhx03")
+
+[node name="Sprite3D" type="Sprite3D" parent="Obstaculo3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.1, 0)
+alpha_cut = 1
+texture = ExtResource("9_7r4gi")
+
+[connection signal="body_entered" from="Obstaculo/Area3D" to="Obstaculo" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Obstaculo/Area3D" to="Obstaculo" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="Obstaculo2/Area3D" to="Obstaculo2" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Obstaculo2/Area3D" to="Obstaculo2" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="Obstaculo3/Area3D" to="Obstaculo3" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Obstaculo3/Area3D" to="Obstaculo3" method="_on_area_3d_body_exited"]

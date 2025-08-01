@@ -14,6 +14,7 @@ var input_direction : Vector2
 @export var chicles : int
 @export var reset_contadores : bool
 @export var duracion_timer : float = 2.0
+@export var todo_estado : Array[String]
 
 @onready var overlays: Control = $Overlays
 @onready var ardillas_count: RichTextLabel = $Overlays/VBoxContainer/HBoxContainer/ArdillasCount
@@ -23,7 +24,11 @@ var input_direction : Vector2
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite3D = $Sprite
 
-signal MoveState(Moving : bool)
+@onready var touched_obstacle : String 
+@onready var unlocked_habilities : Array
+
+
+signal MoveState(state_name : String)
 
 
 
@@ -48,6 +53,7 @@ func _physics_process(delta):
 	#print(global_position)
 	move_and_slide()
 	get_input_movement()
+	eval_moving()
 	
 
 func update_timer(go : bool):
@@ -63,22 +69,68 @@ func update_timer(go : bool):
 				timer.paused = true
 
 
+
 func get_input_movement():
 	input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	if Input.is_action_pressed("run"):
-		self.velocity.x = input_direction.x * sprint_speed
-		self.velocity.z = input_direction.y * sprint_speed
+	if touched_obstacle == "":
+		if Input.is_action_pressed("run"):
+			self.velocity.x = input_direction.x * sprint_speed
+			self.velocity.z = input_direction.y * sprint_speed
+		else:
+			self.velocity.x = input_direction.x * speed
+			self.velocity.z = input_direction.y * speed
+			
+
 	else:
-		self.velocity.x = input_direction.x * speed
-		self.velocity.z = input_direction.y * speed
-	if input_direction != Vector2.ZERO:
+		match touched_obstacle:
+			"Escalar":
+				check_abilities(1)
+			"Agua":
+				check_abilities(2)
+					
+		
+
+func check_abilities(index_to_check : int):
+	unlocked_habilities = [
+		SaveManager.Habilidad1_1, 
+		SaveManager.Habilidad2_1,
+		SaveManager.Habilidad3_1, 
+		SaveManager.Habilidad4_1]
+	
+	if unlocked_habilities[index_to_check] == false:
+		throw_player_back()
+	else:
+		throw_player_back(true)
+
+
+func throw_player_back(soft : bool = false, force : float = 2.0, ):
+	match soft:
+		true:
+			self.velocity.x = input_direction.x * (speed - force)
+			self.velocity.z = input_direction.y * (speed - force)
+		false:
+			self.velocity.x = input_direction.x * speed - force
+			self.velocity.z = input_direction.y * speed - force
+
+func eval_moving ():
+	if input_direction != Vector2.ZERO and touched_obstacle == "":
 		#Moving
-		MoveState.emit(true)
 		update_timer(true)
-	else:
+		MoveState.emit("Caminando")
+	elif touched_obstacle == "":
 		#Stoping
-		MoveState.emit(false)
 		update_timer(false)
+		MoveState.emit("Idle")
+	elif input_direction != Vector2.ZERO:
+		update_timer(true)
+		match touched_obstacle:
+			"Escalar":
+				MoveState.emit("Escalando")
+			"Agua":
+				pass
+	
+
+
 
 func interacted_eval(interacted_with : String):
 	if interacted_with == "Ardilla":
@@ -132,13 +184,20 @@ func _on_timer_timeout() -> void:
 	update_counts()
 
 
-func _on_move_state(Moving: bool) -> void:
-	match Moving:
-		true:
+func _on_move_state(state_name : String) -> void:
+	
+	match state_name:
+		"Caminando":
 			animation_player.play("walking")
-		false:
-			sprite.position = Vector3.ZERO
-			sprite.rotation_degrees = Vector3.ZERO
-			sprite.rotation_degrees.x = -90
-			
+		"Escalando":
+			animation_player.play("walking")
+		"Idle":
 			animation_player.play("idle")
+			idle_sprite()
+				
+
+func idle_sprite():
+	sprite.position = Vector3.ZERO
+	sprite.rotation_degrees = Vector3.ZERO
+	sprite.rotation_degrees.x = -90
+	animation_player.play("idle")
