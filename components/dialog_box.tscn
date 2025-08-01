@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bljhsfid7fwt5"]
+[gd_scene load_steps=6 format=3 uid="uid://bljhsfid7fwt5"]
 
+[ext_resource type="FontFile" uid="uid://ojhacg2t03ld" path="res://assets/fonts/geometry-soft-pro/Geometry_Soft_Pro-Bold_N.otf" id="1_1x724"]
 [ext_resource type="Script" uid="uid://cdx5xiidh8dck" path="res://components/Dialog_Component.gd" id="2_c38jr"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_63amb"]
@@ -31,6 +32,7 @@ grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_constants/line_separation = 25
+theme_override_fonts/normal_font = ExtResource("1_1x724")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center][center]"

@@ -20,6 +20,10 @@ var input_direction : Vector2
 @onready var chicles_count: RichTextLabel = $Overlays/VBoxContainer/HBoxContainer/ChiclesCount
 @onready var timer: Timer = $Timer
 @onready var progress_bar: ProgressBar = $Overlays/VBoxContainer/ProgressBar
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sprite: Sprite3D = $Sprite
+
+signal MoveState(Moving : bool)
 
 
 
@@ -68,8 +72,12 @@ func get_input_movement():
 		self.velocity.x = input_direction.x * speed
 		self.velocity.z = input_direction.y * speed
 	if input_direction != Vector2.ZERO:
+		#Moving
+		MoveState.emit(true)
 		update_timer(true)
 	else:
+		#Stoping
+		MoveState.emit(false)
 		update_timer(false)
 
 func interacted_eval(interacted_with : String):
@@ -122,3 +130,15 @@ func _on_timer_timeout() -> void:
 		print("Se acaba el dia")
 		set_values()
 	update_counts()
+
+
+func _on_move_state(Moving: bool) -> void:
+	match Moving:
+		true:
+			animation_player.play("walking")
+		false:
+			sprite.position = Vector3.ZERO
+			sprite.rotation_degrees = Vector3.ZERO
+			sprite.rotation_degrees.x = -90
+			
+			animation_player.play("idle")

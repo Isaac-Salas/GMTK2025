@@ -21,8 +21,10 @@ volumetric_fog_density = 0.0
 adjustment_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7141"]
-albedo_texture = ExtResource("1_4wyf3")
+transparency = 1
+blend_mode = 3
 normal_enabled = true
+normal_scale = -2.96
 normal_texture = ExtResource("4_i7141")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4wyf3"]
@@ -53,7 +55,7 @@ Player = NodePath("../Player")
 
 [node name="Sprite3DFloor" type="Sprite3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_i7141")
+material_overlay = SubResource("StandardMaterial3D_i7141")
 pixel_size = 0.05
 shaded = true
 alpha_cut = 1
