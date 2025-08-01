@@ -25,7 +25,12 @@ var input_direction : Vector2
 
 func _ready() -> void:
 	timer.start(duracion_timer)
-	update_counts(override)
+	if override == false:
+		SaveManager.load_game()
+		set_values()
+		update_counts()
+	else:
+		update_override()
 	if reset_contadores == true:
 		reset_counts()
 
@@ -70,23 +75,29 @@ func get_input_movement():
 func interacted_eval(interacted_with : String):
 	if interacted_with == "Ardilla":
 		SaveManager.setter("Ardillas_TOTAL", SaveManager.Ardillas_TOTAL + 1)
+		ardillas += 1
 		SaveManager.save_game()
-		update_counts(override)
+		update_counts()
 	if interacted_with == "Chicle":
 		SaveManager.setter("Chicles_TOTAL", SaveManager.Chicles_TOTAL + 1)
+		chicles += 1
 		SaveManager.save_game()
-		update_counts(override)
+		update_counts()
 
-func update_counts(overd : bool):
-	if overd == false:
-		SaveManager.load_game()
-		ardillas = SaveManager.Ardillas_TOTAL
-		chicles = SaveManager.Chicles_TOTAL
-	else:
-		SaveManager.setter("Ardillas_TOTAL", ardillas)
-		SaveManager.setter("Chicles_TOTAL", chicles)
-		SaveManager.save_game()
+func update_override():
+	SaveManager.Ardillas_TOTAL = ardillas 
+	SaveManager.Chicles_TOTAL = chicles
+	SaveManager.save_game()
+	ardillas_count.clear()
+	ardillas_count.append_text("X " + str(ardillas))
+	chicles_count.clear()
+	chicles_count.append_text("X " + str(chicles))
+	
+func set_values():
+	ardillas = SaveManager.Ardillas_TOTAL 
+	chicles = SaveManager.Chicles_TOTAL
 
+func update_counts():
 	ardillas_count.clear()
 	ardillas_count.append_text("X " + str(ardillas))
 	chicles_count.clear()
@@ -96,17 +107,18 @@ func reset_counts():
 	SaveManager.setter("Ardillas_TOTAL", 0)
 	SaveManager.setter("Chicles_TOTAL", 0)
 	SaveManager.save_game()
-	update_counts(override)
+	set_values()
+	update_counts()
 
 
 
 func _on_timer_timeout() -> void:
 	chicles -= 1
-	if chicles < 0:
+	if chicles == 0:
 		ardillas -= 1
 		chicles = SaveManager.Chicles_TOTAL
 		print(SaveManager.Chicles_TOTAL)
 	if ardillas == 0:
 		print("Se acaba el dia")
-	
-	update_counts(override)
+		set_values()
+	update_counts()
