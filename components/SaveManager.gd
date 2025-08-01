@@ -37,6 +37,9 @@ var Chicle4_2 : bool = false
 var Chicle4_3 : bool = false
 var Buff4_1: bool = false
 
+var Ardillas_TOTAL: int = 0
+var Chicles_TOTAL: int = 0
+
 
 
 var save_dict : Dictionary
@@ -84,7 +87,12 @@ func save():
 		"Chicle4_1" : Chicle4_1,
 		"Chicle4_2" : Chicle4_2,
 		"Chicle4_3" : Chicle4_3,
-		"Buff4_1" : Buff4_1
+		"Buff4_1" : Buff4_1,
+		
+		
+		"Ardillas_TOTAL" : Ardillas_TOTAL,
+		"Chicles_TOTAL" : Chicles_TOTAL
+		
 		
 	}
 	return save_dict

@@ -1,30 +1,112 @@
 extends CharacterBody3D
 class_name Player
 
-@export var speed = 5
+@export var speed : float = 5.0
+@export var sprint_speed : float = 10.0
 #@onready var sprite = $Sprite
 var input_direction : Vector2
 #var colors_struck : Array[int] = [0,0]
 @export var clamp_max : float = 48.0
 @export var clamp_min : float = -48.0
 @export var clamp_offset : float
-@export var override : bool
+@export var override : bool = false
 @export var ardillas : int
 @export var chicles : int
+@export var reset_contadores : bool
+@export var duracion_timer : float = 2.0
 
-signal color_queue_updated(color_queue : Array[int])
-# Getting the input inside a 2D Vector and setting the velocity accordingly
-func get_input_movement(delta):
-	input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	#print (input_direction)
-	self.velocity.x = input_direction.x * speed
-	self.velocity.z = input_direction.y * speed
+@onready var overlays: Control = $Overlays
+@onready var ardillas_count: RichTextLabel = $Overlays/VBoxContainer/HBoxContainer/ArdillasCount
+@onready var chicles_count: RichTextLabel = $Overlays/VBoxContainer/HBoxContainer/ChiclesCount
+@onready var timer: Timer = $Timer
+@onready var progress_bar: ProgressBar = $Overlays/VBoxContainer/ProgressBar
+
+
+
+func _ready() -> void:
+	timer.start(duracion_timer)
+	update_counts(override)
+	if reset_contadores == true:
+		reset_counts()
+
+
+
 
 func _physics_process(delta):
 	
 	global_position.z = clamp(global_position.z, clamp_min+clamp_offset,clamp_max-clamp_offset)
 	global_position.x = clamp (global_position.x, clamp_min+clamp_offset,clamp_max-clamp_offset)
 	#print(global_position)
-	get_input_movement(delta)
 	move_and_slide()
+	get_input_movement()
 	
+
+func update_timer(go : bool):
+	progress_bar.max_value = duracion_timer
+	progress_bar.value = timer.time_left
+	
+	match go:
+		true:
+			if timer.is_stopped() == true or timer.is_paused() == true:
+				timer.paused = false
+		false:
+			if timer.is_stopped() == false or timer.is_paused() == false:
+				timer.paused = true
+
+
+func get_input_movement():
+	input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	if Input.is_action_pressed("run"):
+		self.velocity.x = input_direction.x * sprint_speed
+		self.velocity.z = input_direction.y * sprint_speed
+	else:
+		self.velocity.x = input_direction.x * speed
+		self.velocity.z = input_direction.y * speed
+	if input_direction != Vector2.ZERO:
+		update_timer(true)
+	else:
+		update_timer(false)
+
+func interacted_eval(interacted_with : String):
+	if interacted_with == "Ardilla":
+		SaveManager.setter("Ardillas_TOTAL", SaveManager.Ardillas_TOTAL + 1)
+		SaveManager.save_game()
+		update_counts(override)
+	if interacted_with == "Chicle":
+		SaveManager.setter("Chicles_TOTAL", SaveManager.Chicles_TOTAL + 1)
+		SaveManager.save_game()
+		update_counts(override)
+
+func update_counts(overd : bool):
+	if overd == false:
+		SaveManager.load_game()
+		ardillas = SaveManager.Ardillas_TOTAL
+		chicles = SaveManager.Chicles_TOTAL
+	else:
+		SaveManager.setter("Ardillas_TOTAL", ardillas)
+		SaveManager.setter("Chicles_TOTAL", chicles)
+		SaveManager.save_game()
+
+	ardillas_count.clear()
+	ardillas_count.append_text("X " + str(ardillas))
+	chicles_count.clear()
+	chicles_count.append_text("X " + str(chicles))
+	
+func reset_counts():
+	SaveManager.setter("Ardillas_TOTAL", 0)
+	SaveManager.setter("Chicles_TOTAL", 0)
+	SaveManager.save_game()
+	update_counts(override)
+
+
+
+func _on_timer_timeout() -> void:
+	chicles -= 1
+	if chicles < 0:
+		ardillas -= 1
+		chicles = SaveManager.Chicles_TOTAL
+		print(SaveManager.Chicles_TOTAL)
+	if ardillas == 0:
+		print("Se acaba el dia")
+	
+	update_counts(override)

@@ -1,20 +1,58 @@
 extends Node3D
 class_name ObjectComponent
+const OUTLINE = preload("res://shaders/outline.gdshader")
+
 @export_enum("Habilidad","Ardilla", "Chicle", "Buff") var Tipo : String = "Ardilla"
+@export var player : Player
 @export var Zona : int
 @export var Numero : int
-@onready var player_detect: Area3D = $PlayerDetect
+@export var Eterno : bool
 
+@onready var can_interact : bool 
+@onready var player_detect: Area3D = $PlayerDetect
+@onready var sprite: Sprite3D = $Sprite
+@onready var rich_text_label: RichTextLabel = $RichTextLabel
+@onready var prompt_sprite: Sprite3D = $Sprite/Prompt
+
+
+signal InteractedWith(Type)
+
+func _ready() -> void:
+	if player != null:
+		InteractedWith.connect(player.interacted_eval)
+
+func  _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("interact") and can_interact == true:
+		set_and_save(Tipo, Zona, Numero)
+
+func prompt(toggle : bool):
+	match toggle:
+		true:
+			prompt_sprite.visible = true
+		false:
+			prompt_sprite.visible = false
+	
+		#newmat.set_shader_parameter("flickering_speed", 20)
+	
 
 func _on_player_detect_body_entered(body: Node3D) -> void:
 	if body is Player:
 		if Tipo != null:
-			set_and_save(Tipo, Zona, Numero)
-		
-				
+			prompt(true)
+			can_interact = true
+
+
+func _on_player_detect_body_exited(body: Node3D) -> void:
+	if body is Player:
+		if Tipo != null:
+			prompt(false)
+			can_interact = false
 
 func set_and_save(type : String, zone : int, num : int):
 	var constructed : String = str(type) + str(zone) + "_" + str(num)
 	SaveManager.setter(constructed,true)
 	SaveManager.save_game()
-	
+	if Player != null:
+		InteractedWith.emit(type)
+		if Eterno == false:
+			self.queue_free()
