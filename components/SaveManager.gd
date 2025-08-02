@@ -116,7 +116,7 @@ func save_game():
 
 func load_game():
 	if not FileAccess.file_exists("user://savegame.save"):
-		print("Nah")
+		print("Error LOADING")
 		return # Error! We don't have a save to load.
 
 

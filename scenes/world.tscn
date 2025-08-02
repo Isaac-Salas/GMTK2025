@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cim5ukairdcvq"]
+[gd_scene load_steps=29 format=3 uid="uid://cim5ukairdcvq"]
 
 [ext_resource type="Texture2D" uid="uid://boh8i64e6ower" path="res://assets/Mundo/Mundo.png" id="1_4wyf3"]
 [ext_resource type="Script" uid="uid://n6gujomtfngi" path="res://scenes/world.gd" id="1_qfnet"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://57gf4vc0lkv8" path="res://components/audio_manager.tscn" id="12_jhx03"]
 [ext_resource type="AudioStream" uid="uid://odk150h5we1o" path="res://assets/Music/Evening.mp3" id="13_o8fc1"]
 [ext_resource type="Script" uid="uid://swirjnlfh6ki" path="res://scenes/day_animations.gd" id="15_xo05s"]
+[ext_resource type="PackedScene" uid="uid://b8esp8bo8rj1u" path="res://components/key_item_proto.tscn" id="16_dss4m"]
 
 [sub_resource type="Gradient" id="Gradient_i7141"]
 offsets = PackedFloat32Array(0, 0.3, 0.6, 1)
@@ -174,12 +175,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.57897, 0, 32.1767)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.67, 0, 35.483)
 Zona = 1
 Numero = 1
+Eterno = true
 
 [node name="Personajes" type="Node3D" parent="."]
 
-[node name="Personaje_proto" parent="Personajes" instance=ExtResource("8_4mrxx")]
+[node name="Personaje_proto" parent="Personajes" node_paths=PackedStringArray("quest_item_needed") instance=ExtResource("8_4mrxx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3268, 0, 32.3197)
-quest_item_on_hand = true
+normal_dialog = PackedStringArray("Ayo my man!", "Bring me that gumball over there.")
+quest_end = PackedStringArray("Thanks baby girl...", "Its for you now")
+quest_item_needed = NodePath("../../KeyItemProto")
 
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -27.3236, 0.2, 39.5332)
@@ -212,5 +216,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_dss4m")
 }
 script = ExtResource("15_xo05s")
+
+[node name="KeyItemProto" parent="." instance=ExtResource("16_dss4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6309, 0, 28.9205)
 
 [connection signal="DayEnd" from="Player" to="DayAnimations" method="_on_player_day_end"]

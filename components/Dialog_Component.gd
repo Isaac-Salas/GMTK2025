@@ -66,7 +66,7 @@ func _on_timer_timeout():
 		charcount += 1
 	if charcount == textoide.length():
 		if count < 1:
-			print("done")
+			#print("done")
 			count += 1
 			InputEnable = true
 			LineDone.emit()
@@ -75,7 +75,7 @@ func _on_timer_timeout():
 			
 			if linecount == Dialog.size() - 1:
 				DialogDone.emit()
-				print("CompletelyDOne")
+				#print("CompletelyDOne")
 
 		
 

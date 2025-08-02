@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://c5hki68aq0kpt"]
 
 [ext_resource type="Script" uid="uid://c36w1md4rb5et" path="res://components/personaje_comp.gd" id="1_e3jlt"]
-[ext_resource type="Texture2D" uid="uid://w7do8k4paqgh" path="res://assets/Aseprites/Robot tierroso.png" id="2_e3jlt"]
+[ext_resource type="Texture2D" uid="uid://bywqe8vpb6s5c" path="res://assets/Aseprites/Robot tierroso.png" id="2_e3jlt"]
 [ext_resource type="FontFile" uid="uid://ojhacg2t03ld" path="res://assets/fonts/geometry-soft-pro/Geometry_Soft_Pro-Bold_N.otf" id="3_v1a4o"]
 [ext_resource type="PackedScene" uid="uid://jg03u502ldhj" path="res://scenes/animations/sprite_animations.tscn" id="4_6va0f"]
 [ext_resource type="PackedScene" uid="uid://bljhsfid7fwt5" path="res://components/dialog_box.tscn" id="5_ey1ox"]
@@ -186,13 +186,13 @@ texture = ExtResource("5_few2o")
 layout_mode = 1
 InputEnable = false
 Timerstart = false
-Dialog = PackedStringArray("Hello bruh", "...", "Uh", "...", "Anyway, see you")
+Dialog = PackedStringArray()
 
 [node name="QuestCompleteDialog" parent="UIStuff" instance=ExtResource("5_ey1ox")]
 layout_mode = 1
 InputEnable = false
 Timerstart = false
-Dialog = PackedStringArray("Damn dude that rocks!!!", "...", "Uh, I mean...", "...", "Anyway, see you")
+Dialog = PackedStringArray("")
 
 [node name="NameText" type="RichTextLabel" parent="UIStuff"]
 layout_mode = 1

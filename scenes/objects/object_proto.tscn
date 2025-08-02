@@ -64,7 +64,6 @@ texture_filter = 0
 
 [node name="Prompt" type="Sprite3D" parent="Sprite"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.2)
-visible = false
 texture_filter = 0
 texture = SubResource("ViewportTexture_46ay6")
 

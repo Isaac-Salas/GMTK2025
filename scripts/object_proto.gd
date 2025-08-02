@@ -2,8 +2,8 @@ extends Node3D
 class_name ObjectComponent
 const OUTLINE = preload("res://shaders/outline.gdshader")
 
-@export_enum("Habilidad","Ardilla", "Chicle", "Buff") var Tipo : String = "Ardilla"
-@export var player : Player
+@export_enum("Ardilla", "Chicle", "Buff") var Tipo : String = "Ardilla"
+@onready var player : Player
 @export var Zona : int
 @export var Numero : int
 @export var Eterno : bool
@@ -21,6 +21,24 @@ signal InteractedWith(Type)
 func _ready() -> void:
 	if player != null:
 		InteractedWith.connect(player.interacted_eval)
+	if Eterno == false:
+		await SaveManager.load_game()
+		var constructed = lookup()
+		check_if_done(constructed)
+
+
+
+func lookup():
+	var constructed : String = str(Tipo) + str(Zona) + "_" + str(Numero)
+	return constructed
+
+func check_if_done(preconstructed : String):
+	var compare = SaveManager.get(preconstructed)
+	print("Checking ->", preconstructed, ": ", compare)
+	if compare == true:
+		self.queue_free()
+
+
 
 func  _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("interact") and can_interact == true:
