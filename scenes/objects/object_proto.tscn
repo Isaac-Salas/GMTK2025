@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpl3he238umye"]
 
 [ext_resource type="Script" uid="uid://d4b1nh3wdwixp" path="res://scripts/object_proto.gd" id="1_d3ihx"]
-[ext_resource type="Texture2D" uid="uid://cce3xfbwdau3k" path="res://assets/Objetos/Gumball.png" id="2_d3ihx"]
+[ext_resource type="FontFile" uid="uid://ojhacg2t03ld" path="res://assets/fonts/geometry-soft-pro/Geometry_Soft_Pro-Bold_N.otf" id="2_d3ihx"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qfnet"]
-size = Vector3(2, 1, 2)
+[sub_resource type="SphereShape3D" id="SphereShape3D_d3ihx"]
+radius = 3.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_46ay6"]
 viewport_path = NodePath("Sprite/Prompt/SubViewport")
@@ -15,19 +15,18 @@ script = ExtResource("1_d3ihx")
 [node name="PlayerDetect" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetect"]
-shape = SubResource("BoxShape3D_qfnet")
+shape = SubResource("SphereShape3D_d3ihx")
 
 [node name="Sprite" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.1, 0)
+pixel_size = 0.04
 shaded = true
 alpha_cut = 1
 texture_filter = 0
-texture = ExtResource("2_d3ihx")
 
 [node name="Prompt" type="Sprite3D" parent="Sprite"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.2)
 visible = false
-alpha_cut = 1
 texture_filter = 0
 texture = SubResource("ViewportTexture_46ay6")
 
@@ -43,6 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_d3ihx")
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "[center]Interact?[/center]"

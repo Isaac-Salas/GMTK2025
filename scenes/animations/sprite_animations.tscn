@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://jg03u502ldhj"]
+
+[ext_resource type="AnimationLibrary" uid="uid://b5c7o3yyu186r" path="res://scenes/animations/AnimLibrary.res" id="1_mnnw0"]
+
+[node name="SpriteAnimations" type="AnimationPlayer"]
+root_node = NodePath("../..")
+libraries = {
+&"AnimLibrary": ExtResource("1_mnnw0")
+}
+autoplay = "idle"

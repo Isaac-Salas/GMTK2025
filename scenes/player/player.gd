@@ -21,8 +21,10 @@ var input_direction : Vector2
 @onready var chicles_count: RichTextLabel = $Overlays/VBoxContainer/HBoxContainer/ChiclesCount
 @onready var timer: Timer = $Timer
 @onready var progress_bar: ProgressBar = $Overlays/VBoxContainer/ProgressBar
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sprite_animations: AnimationPlayer = $Sprite/SpriteAnimations
+
 @onready var sprite: Sprite3D = $Sprite
+@onready var estado_display: RichTextLabel = $Overlays/VBoxContainer/EstadoDisplay
 
 @onready var touched_obstacle : String 
 @onready var unlocked_habilities : Array
@@ -112,11 +114,17 @@ func throw_player_back(soft : bool = false, force : float = 2.0, ):
 			self.velocity.x = input_direction.x * speed - force
 			self.velocity.z = input_direction.y * speed - force
 
+
 func eval_moving ():
 	if input_direction != Vector2.ZERO and touched_obstacle == "":
 		#Moving
 		update_timer(true)
-		MoveState.emit("Caminando")
+		
+		if Input.is_action_pressed("run"):
+			MoveState.emit("Corriendo")
+		else:
+			MoveState.emit("Caminando")
+		
 	elif touched_obstacle == "":
 		#Stoping
 		update_timer(false)
@@ -188,16 +196,27 @@ func _on_move_state(state_name : String) -> void:
 	
 	match state_name:
 		"Caminando":
-			animation_player.play("walking")
+			sprite_animations.speed_scale = 1.0
+			sprite_animations.play("walking")
+			update_state_text("WALKING")
+		"Corriendo":
+			sprite_animations.speed_scale = 2.0
+			sprite_animations.play("walking")
+			update_state_text("RUNNING")
 		"Escalando":
-			animation_player.play("walking")
+			sprite_animations.play("walking")
 		"Idle":
-			animation_player.play("idle")
+			sprite_animations.play("idle")
 			idle_sprite()
 				
 
+func update_state_text(text:String):
+	estado_display.clear()
+	estado_display.append_text("[center]" + text)
+
 func idle_sprite():
 	sprite.position = Vector3.ZERO
+	sprite.position.y = 0.2
 	sprite.rotation_degrees = Vector3.ZERO
 	sprite.rotation_degrees.x = -90
-	animation_player.play("idle")
+	sprite_animations.play("idle")

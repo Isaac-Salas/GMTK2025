@@ -6,14 +6,20 @@ class_name DialogComponent
 @export var linecount : int = 0
 @export var Typetime : float = 0
 @export var Quickypetime : float = 0
+
 @export var Dialog : PackedStringArray
 @onready var extraevent : bool = true
 @onready var animated_sprite_2d = $Control/AnimatedSprite2D
 @export var show_end : bool
+
+
+
+
 @onready var charcount : int = 0
 @onready var timer = $Timer
 @onready var count : int = 0 
-signal Done()
+signal LineDone()
+signal DialogDone()
 @onready var dumbdone : bool
 @onready var audio_stream_player = $AudioStreamPlayer
 @onready var bell = $Bell
@@ -23,6 +29,7 @@ func _ready():
 	timer.wait_time = Typetime
 	if Timerstart == true:
 		timer.start()
+
 	
 
 
@@ -62,9 +69,14 @@ func _on_timer_timeout():
 			print("done")
 			count += 1
 			InputEnable = true
-			Done.emit()
+			LineDone.emit()
 			bell.pitch_scale = randf_range(1.0, 1.5)
 			bell.play()
+			
+			if linecount == Dialog.size() - 1:
+				DialogDone.emit()
+				print("CompletelyDOne")
+
 		
 
 

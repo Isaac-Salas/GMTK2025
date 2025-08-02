@@ -11,7 +11,8 @@ const OUTLINE = preload("res://shaders/outline.gdshader")
 @onready var can_interact : bool 
 @onready var player_detect: Area3D = $PlayerDetect
 @onready var sprite: Sprite3D = $Sprite
-@onready var rich_text_label: RichTextLabel = $RichTextLabel
+@onready var rich_text_label: RichTextLabel = $Sprite/Prompt/SubViewport/RichTextLabel
+
 @onready var prompt_sprite: Sprite3D = $Sprite/Prompt
 
 

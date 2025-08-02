@@ -1,54 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://4eywlb6lbhnu"]
+[gd_scene load_steps=4 format=3 uid="uid://bwlq41to3aofh"]
 
-[ext_resource type="Script" uid="uid://d4b1nh3wdwixp" path="res://scripts/object_proto.gd" id="1_4mpay"]
+[ext_resource type="PackedScene" uid="uid://cpl3he238umye" path="res://scenes/objects/object_proto.tscn" id="1_0yiuo"]
 [ext_resource type="Texture2D" uid="uid://cce3xfbwdau3k" path="res://assets/Objetos/Gumball.png" id="2_4mpay"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qfnet"]
-size = Vector3(2, 1, 2)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4mpay"]
 viewport_path = NodePath("Sprite/Prompt/SubViewport")
 
-[node name="Chicle" type="Node3D"]
-script = ExtResource("1_4mpay")
+[node name="ObjectProto" instance=ExtResource("1_0yiuo")]
 Tipo = "Chicle"
 
-[node name="PlayerDetect" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetect"]
-shape = SubResource("BoxShape3D_qfnet")
-
-[node name="Sprite" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.1, 0)
-shaded = true
-alpha_cut = 1
-texture_filter = 0
+[node name="Sprite" parent="." index="1"]
 texture = ExtResource("2_4mpay")
 
-[node name="Prompt" type="Sprite3D" parent="Sprite"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.5)
-visible = false
-alpha_cut = 1
-texture_filter = 0
+[node name="Prompt" parent="Sprite" index="0"]
 texture = SubResource("ViewportTexture_4mpay")
-
-[node name="SubViewport" type="SubViewport" parent="Sprite/Prompt"]
-disable_3d = true
-transparent_bg = true
-size = Vector2i(185, 60)
-size_2d_override_stretch = true
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Sprite/Prompt/SubViewport"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 35
-bbcode_enabled = true
-text = "[center]Interact?[/center]"
-fit_content = true
-scroll_active = false
-
-[connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detect_body_entered"]
-[connection signal="body_exited" from="PlayerDetect" to="." method="_on_player_detect_body_exited"]

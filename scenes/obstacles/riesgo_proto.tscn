@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnvp2q56pjhvg"]
+
+[ext_resource type="Script" uid="uid://bwvjpbm4ekwte" path="res://components/riesgo_comp.gd" id="1_uey32"]
+[ext_resource type="Texture2D" uid="uid://d2e7ee83nfofv" path="res://assets/Obstaculos/Piedra.png" id="2_btbjb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jhx03"]
+size = Vector3(7.7, 2, 7.7)
+
+[node name="Riesgo_proto" type="Area3D"]
+script = ExtResource("1_uey32")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_jhx03")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.1, 0)
+pixel_size = 0.04
+alpha_cut = 1
+texture = ExtResource("2_btbjb")
