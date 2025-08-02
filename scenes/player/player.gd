@@ -15,6 +15,8 @@ var input_direction : Vector2
 @export var reset_contadores : bool
 @export var duracion_timer : float = 2.0
 @export var todo_estado : Array[String]
+@export var overlays_on : bool = true
+@export var bilboard_sprite : bool = false
 
 @onready var overlays: Control = $Overlays
 @onready var ardillas_count: RichTextLabel = $Overlays/VBoxContainer/HBoxContainer/ArdillasCount
@@ -44,6 +46,15 @@ func _ready() -> void:
 		update_override()
 	if reset_contadores == true:
 		reset_counts()
+	if overlays_on == true:
+		overlays.visible = true
+	else:
+		overlays.visible= false
+	if bilboard_sprite == true:
+		sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	else:
+		sprite.billboard = BaseMaterial3D.BILLBOARD_DISABLED
+	
 
 
 

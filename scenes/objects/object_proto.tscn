@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpl3he238umye"]
+[gd_scene load_steps=8 format=3 uid="uid://cpl3he238umye"]
 
 [ext_resource type="Script" uid="uid://d4b1nh3wdwixp" path="res://scripts/object_proto.gd" id="1_d3ihx"]
 [ext_resource type="FontFile" uid="uid://ojhacg2t03ld" path="res://assets/fonts/geometry-soft-pro/Geometry_Soft_Pro-Bold_N.otf" id="2_d3ihx"]
@@ -8,6 +8,44 @@ radius = 3.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_46ay6"]
 viewport_path = NodePath("Sprite/Prompt/SubViewport")
+
+[sub_resource type="Animation" id="Animation_d3ihx"]
+resource_name = "Idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_46ay6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sjuwd"]
+_data = {
+&"Idle": SubResource("Animation_d3ihx"),
+&"RESET": SubResource("Animation_46ay6")
+}
 
 [node name="ObjectProto" type="Node3D"]
 script = ExtResource("1_d3ihx")
@@ -48,6 +86,12 @@ bbcode_enabled = true
 text = "[center]Interact?[/center]"
 fit_content = true
 scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sjuwd")
+}
+autoplay = "Idle"
 
 [connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detect_body_entered"]
 [connection signal="body_exited" from="PlayerDetect" to="." method="_on_player_detect_body_exited"]
