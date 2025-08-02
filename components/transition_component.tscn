@@ -138,6 +138,7 @@ _data = {
 }
 
 [node name="TransitionComponent" type="Node3D"]
+process_mode = 3
 script = ExtResource("1_8eqpn")
 
 [node name="Control" type="Control" parent="."]

@@ -255,6 +255,7 @@ viewport_path = NodePath("Personaje_proto3/Sprite/Prompt/SubViewport")
 
 [node name="Menu" type="Node3D" node_paths=PackedStringArray("transition")]
 script = ExtResource("1_aaywf")
+debugging = true
 transition = NodePath("TransitionComponent")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

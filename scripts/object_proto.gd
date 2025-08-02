@@ -39,6 +39,7 @@ func prompt(toggle : bool):
 func _on_player_detect_body_entered(body: Node3D) -> void:
 	if body is Player:
 		if Tipo != null:
+			player = body
 			prompt(true)
 			can_interact = true
 
@@ -46,6 +47,7 @@ func _on_player_detect_body_entered(body: Node3D) -> void:
 func _on_player_detect_body_exited(body: Node3D) -> void:
 	if body is Player:
 		if Tipo != null:
+			player = null
 			prompt(false)
 			can_interact = false
 

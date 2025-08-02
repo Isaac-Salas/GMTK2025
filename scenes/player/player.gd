@@ -1,8 +1,8 @@
 extends CharacterBody3D
 class_name Player
 
-@export var speed : float = 5.0
-@export var sprint_speed : float = 10.0
+@export var speed : float = 6.0
+@export var sprint_speed : float = 12.0
 #@onready var sprite = $Sprite
 var input_direction : Vector2
 #var colors_struck : Array[int] = [0,0]
@@ -18,13 +18,19 @@ var input_direction : Vector2
 @export var overlays_on : bool = true
 @export var bilboard_sprite : bool = false
 @export var unlock_all_abilities : bool = false
+@export var days_to_explore : int = 3
+@export var house_marker : Marker3D
+@export var race_marker : Marker3D
+@export var transition : TransitionComponent
 
+@onready var days_left : int
 @onready var overlays: Control = $Overlays
 @onready var ardillas_count: RichTextLabel = $Overlays/VBoxContainer/HBoxContainer/ArdillasCount
 @onready var chicles_count: RichTextLabel = $Overlays/VBoxContainer/HBoxContainer/ChiclesCount
 @onready var timer: Timer = $Timer
 @onready var progress_bar: ProgressBar = $Overlays/VBoxContainer/ProgressBar
 @onready var sprite_animations: AnimationPlayer = $Sprite/SpriteAnimations
+@onready var contador_dias: RichTextLabel = $Overlays/ContadorDias
 
 @onready var sprite: Sprite3D = $Sprite
 @onready var estado_display: RichTextLabel = $Overlays/VBoxContainer/EstadoDisplay
@@ -33,8 +39,10 @@ var input_direction : Vector2
 @onready var unlocked_habilities : Array
 
 
-
+signal DayEnd()
+signal StartRace()
 signal MoveState(state_name : String)
+
 
 
 
@@ -56,6 +64,9 @@ func _ready() -> void:
 		sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	else:
 		sprite.billboard = BaseMaterial3D.BILLBOARD_DISABLED
+		
+	reset_day_counter()
+	update_day_counter()
 	
 
 
@@ -210,9 +221,37 @@ func _on_timer_timeout() -> void:
 		print(SaveManager.Chicles_TOTAL)
 	if ardillas == 0:
 		print("Se acaba el dia")
+		
+		day_pass()
 		set_values()
+	if days_left == 0:
+		print("GOTO RACE!!!")
+		go_to_race()
 	update_counts()
 
+func day_pass():
+	DayEnd.emit()
+	days_left -= 1
+	update_day_counter()
+
+func go_to_race():
+	if race_marker != null and transition != null:
+		StartRace.emit()
+		transition.trans_inside_world()
+		await transition.animation_player.animation_finished
+		self.global_position = race_marker.global_position
+		reset_day_counter()
+		
+
+func reset_day_counter():
+	days_left = days_to_explore
+	update_day_counter()
+
+func update_day_counter():
+	contador_dias.clear()
+	contador_dias.bbcode_enabled = true
+	contador_dias.append_text("[center]Days left: ")
+	contador_dias.append_text(str(days_left) + "[/center]")
 
 func _on_move_state(state_name : String) -> void:
 	

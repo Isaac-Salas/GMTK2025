@@ -33,3 +33,12 @@ func transition_out(to_scene : PackedScene = next_scene):
 func transition_in():
 	#control.visible = true
 	animation_player.play_backwards("tansition")
+	
+func trans_inside_world():
+	get_tree().paused = true
+	animation_player.play("tansition")
+	await animation_player.animation_finished
+	#control.visible = false
+	animation_player.play_backwards("tansition")
+	get_tree().paused = false
+	

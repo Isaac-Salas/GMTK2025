@@ -1,16 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://cxd4h0hh6n80h"]
+[gd_scene load_steps=19 format=3 uid="uid://cxd4h0hh6n80h"]
 
 [ext_resource type="Script" uid="uid://qnwyioli2fxn" path="res://scenes/player/player.gd" id="1_lvxji"]
 [ext_resource type="Texture2D" uid="uid://b4nvyqte0kofo" path="res://assets/Aseprites/Robot.png" id="2_5gtgg"]
 [ext_resource type="PackedScene" uid="uid://jg03u502ldhj" path="res://scenes/animations/sprite_animations.tscn" id="3_h17s1"]
 [ext_resource type="FontFile" uid="uid://ojhacg2t03ld" path="res://assets/fonts/geometry-soft-pro/Geometry_Soft_Pro-Bold_N.otf" id="3_p47bc"]
-[ext_resource type="Texture2D" uid="uid://cce3xfbwdau3k" path="res://assets/Objetos/Gumball.png" id="4_0owmy"]
 [ext_resource type="AnimationLibrary" uid="uid://b5c7o3yyu186r" path="res://scenes/animations/AnimLibrary.res" id="4_je7p5"]
 [ext_resource type="Texture2D" uid="uid://cl8n2mni5gkek" path="res://assets/Aseprites/Ardilla de frente.png" id="4_qek5x"]
 [ext_resource type="Texture2D" uid="uid://cp5mti7ckniwc" path="res://assets/Aseprites/Ardilla de lado.png" id="6_5gtgg"]
 [ext_resource type="Script" uid="uid://d0ry7mga0pyyw" path="res://scripts/detector_riesgo.gd" id="6_75vfm"]
 [ext_resource type="Texture2D" uid="uid://cpbktiqlhgbis" path="res://assets/Aseprites/Ruedita.png" id="7_5gtgg"]
-[ext_resource type="Texture2D" uid="uid://c55o1fhj1s21i" path="res://assets/Fondo/SILMUS.png" id="8_h17s1"]
+[ext_resource type="Texture2D" uid="uid://dtuwsjxo7s2to" path="res://assets/Aseprites/Chicle.png" id="7_h17s1"]
+[ext_resource type="Script" uid="uid://dx1t8x6fpgqm4" path="res://scenes/player/progress_bar.gd" id="8_je7p5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_71j4m"]
 size = Vector3(1.5, 0.4, 2.5)
@@ -20,9 +20,6 @@ default_font = ExtResource("3_p47bc")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4mrxx"]
 viewport_path = NodePath("Overlays/SubViewport")
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_w7kh3"]
-diffuse_texture = ExtResource("4_0owmy")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5gtgg"]
 corner_radius_top_left = 40
@@ -39,15 +36,13 @@ corner_radius_bottom_left = 40
 
 [sub_resource type="Environment" id="Environment_je7p5"]
 background_mode = 1
+background_color = Color(0.423529, 0.337255, 0.443137, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p47bc"]
-size = Vector3(1.5, 1, 2.5)
+size = Vector3(1.5, 1, 1.5)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_lvxji")
-speed = 6.0
-sprint_speed = 12.0
-clamp_offset = 1.0
 
 [node name="Sprite" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 0.2, 0)
@@ -74,15 +69,29 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_75vfm")
 
+[node name="ContadorDias" type="RichTextLabel" parent="Overlays"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -288.0
+offset_bottom = 192.0
+grow_horizontal = 0
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]Days left: "
+vertical_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Overlays"]
 layout_mode = 0
 offset_right = 192.0
-offset_bottom = 257.0
+offset_bottom = 286.0
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Overlays/VBoxContainer"]
 layout_mode = 2
 texture = SubResource("ViewportTexture_4mrxx")
+stretch_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Overlays/VBoxContainer"]
 layout_mode = 2
@@ -93,38 +102,46 @@ texture = ExtResource("4_qek5x")
 stretch_mode = 4
 
 [node name="ArdillasCount" type="RichTextLabel" parent="Overlays/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = " X 0"
 fit_content = true
 
 [node name="Chicles" type="TextureRect" parent="Overlays/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("CanvasTexture_w7kh3")
+texture = ExtResource("7_h17s1")
 stretch_mode = 4
 
 [node name="ChiclesCount" type="RichTextLabel" parent="Overlays/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = " X 0"
 fit_content = true
+scroll_active = false
 
 [node name="ProgressBar" type="ProgressBar" parent="Overlays/VBoxContainer"]
-custom_minimum_size = Vector2(0, 25)
+custom_minimum_size = Vector2(192, 48)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_5gtgg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_h17s1")
 show_percentage = false
+script = ExtResource("8_je7p5")
 
 [node name="EstadoDisplay" type="RichTextLabel" parent="Overlays/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center][center]"
+vertical_alignment = 3
 
 [node name="SubViewport" type="SubViewport" parent="Overlays"]
 own_world_3d = true
@@ -153,11 +170,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 [node name="SpotLight3D" type="SpotLight3D" parent="Overlays/SubViewport/ArdillaContainer/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34343, 0, 0)
 shadow_enabled = true
-
-[node name="Fondo" type="Sprite3D" parent="Overlays/SubViewport/ArdillaContainer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.182695)
-shaded = true
-texture = ExtResource("8_h17s1")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Overlays/SubViewport/ArdillaContainer"]
 environment = SubResource("Environment_je7p5")
