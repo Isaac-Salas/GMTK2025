@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cxx1xn3kw8rxi"]
+[gd_scene load_steps=40 format=3 uid="uid://cxx1xn3kw8rxi"]
 
 [ext_resource type="Script" uid="uid://dhxj6cvlgoba7" path="res://scenes/menu.gd" id="1_aaywf"]
 [ext_resource type="Texture2D" uid="uid://dpsnholv0ivx7" path="res://assets/Mundo/Background.png" id="1_o0tnf"]
@@ -6,11 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://boh8i64e6ower" path="res://assets/Mundo/Mundo.png" id="2_11y2r"]
 [ext_resource type="PackedScene" uid="uid://cxd4h0hh6n80h" path="res://scenes/player/player.tscn" id="3_11y2r"]
 [ext_resource type="Texture2D" uid="uid://3nrpxrbtwr17" path="res://assets/Fondo/Logo_name.png" id="5_jmdev"]
-[ext_resource type="PackedScene" uid="uid://c5hki68aq0kpt" path="res://scenes/characters/personaje_proto.tscn" id="6_b6cxs"]
+[ext_resource type="Script" uid="uid://c36w1md4rb5et" path="res://components/personaje_comp.gd" id="7_5p0sf"]
 [ext_resource type="Texture2D" uid="uid://djewkjvkxy1en" path="res://assets/Menu/Play.png" id="8_1abgu"]
+[ext_resource type="Texture2D" uid="uid://w7do8k4paqgh" path="res://assets/Aseprites/Robot tierroso.png" id="8_7t7qg"]
 [ext_resource type="Texture2D" uid="uid://35m13yoaj5tv" path="res://assets/Aseprites/Robot marino.png" id="9_4umqm"]
+[ext_resource type="FontFile" uid="uid://ojhacg2t03ld" path="res://assets/fonts/geometry-soft-pro/Geometry_Soft_Pro-Bold_N.otf" id="9_l3wcu"]
+[ext_resource type="PackedScene" uid="uid://jg03u502ldhj" path="res://scenes/animations/sprite_animations.tscn" id="10_i7htd"]
 [ext_resource type="Texture2D" uid="uid://dxf1g7yvaff3r" path="res://assets/Menu/Quit.png" id="10_pp5m5"]
+[ext_resource type="Texture2D" uid="uid://dj3b7ucebv66q" path="res://assets/dialogbox/background.png" id="11_dek3k"]
 [ext_resource type="Texture2D" uid="uid://bm6cd3npbxvri" path="res://assets/Aseprites/Robot aereo nuevo.png" id="11_pp5m5"]
+[ext_resource type="PackedScene" uid="uid://bljhsfid7fwt5" path="res://components/dialog_box.tscn" id="12_8fhjo"]
+[ext_resource type="PackedScene" uid="uid://ddlyq4ertop1w" path="res://components/transition_component.tscn" id="12_el213"]
+[ext_resource type="PackedScene" uid="uid://cim5ukairdcvq" path="res://scenes/world.tscn" id="13_thu7x"]
+[ext_resource type="PackedScene" uid="uid://57gf4vc0lkv8" path="res://components/audio_manager.tscn" id="19_7t7qg"]
+[ext_resource type="AudioStream" uid="uid://ko4i2a80wgqd" path="res://assets/Music/Morning.mp3" id="19_l3wcu"]
 
 [sub_resource type="Gradient" id="Gradient_o0tnf"]
 offsets = PackedFloat32Array(0, 0.3, 0.6, 1)
@@ -104,7 +113,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.156863, 0.156863, 0.180392, 1)]
+"values": [Color(0.423529, 0.337255, 0.443137, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -140,14 +149,113 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_b6cxs"]
 size = Vector3(20, 1, 3.265)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_aaywf"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_760fv"]
 viewport_path = NodePath("Personaje_proto/Sprite/Prompt/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4umqm"]
+[sub_resource type="Animation" id="Animation_h17s1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_je7p5"]
+resource_name = "idle"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fm80t"]
+resource_name = "walking"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.2, 0), Vector3(0.5, 0.2, -0.25), Vector3(0, 0.2, 0), Vector3(-0.5, 0.2, -0.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(-1.5708, 0, -0.261799), Vector3(-1.5708, 0, 0), Vector3(-1.5708, 0, 0.261799)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q5onr"]
+_data = {
+&"RESET": SubResource("Animation_h17s1"),
+&"idle": SubResource("Animation_je7p5"),
+&"walking": SubResource("Animation_fm80t")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_few2o"]
+radius = 3.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rehui"]
+viewport_path = NodePath("Personaje_proto2/Sprite/Prompt/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yvxia"]
 viewport_path = NodePath("Personaje_proto3/Sprite/Prompt/SubViewport")
 
-[node name="Menu" type="Node3D"]
+[node name="Menu" type="Node3D" node_paths=PackedStringArray("transition")]
 script = ExtResource("1_aaywf")
+transition = NodePath("TransitionComponent")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_b6cxs")
@@ -180,7 +288,7 @@ spot_range = 600.0
 spot_angle = 60.76
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 28, 0)
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 28, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_11y2r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24035, 0.5, 3.98267)
@@ -195,6 +303,7 @@ libraries = {
 autoplay = "Begin"
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -209,7 +318,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.156863, 0.156863, 0.180392, 1)
+color = Color(0.423529, 0.337255, 0.443137, 1)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.731, 0)
@@ -226,14 +335,120 @@ alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("5_jmdev")
 
-[node name="Personaje_proto" parent="." instance=ExtResource("6_b6cxs")]
+[node name="Personaje_proto" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.72814, 0, 4.56104)
+script = ExtResource("7_5p0sf")
 character_name = "Play"
 menu_behaviour = true
 clamp_range = 6.0
 
-[node name="Prompt" parent="Personaje_proto/Sprite" index="0"]
-texture = SubResource("ViewportTexture_aaywf")
+[node name="Sprite" type="Sprite3D" parent="Personaje_proto"]
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 0.2, 0)
+pixel_size = 0.04
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("8_7t7qg")
+
+[node name="Prompt" type="Sprite3D" parent="Personaje_proto/Sprite"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.57319, 0.2)
+visible = false
+texture_filter = 0
+texture = SubResource("ViewportTexture_760fv")
+
+[node name="SubViewport" type="SubViewport" parent="Personaje_proto/Sprite/Prompt"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(185, 60)
+size_2d_override_stretch = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Personaje_proto/Sprite/Prompt/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("9_l3wcu")
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center]Interact?[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="SpriteAnimations" parent="Personaje_proto/Sprite" instance=ExtResource("10_i7htd")]
+libraries = {
+&"AnimLibrary": SubResource("AnimationLibrary_q5onr")
+}
+autoplay = "AnimLibrary/idle"
+
+[node name="PlayerDetect" type="Area3D" parent="Personaje_proto"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Personaje_proto/PlayerDetect"]
+shape = SubResource("SphereShape3D_few2o")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="Personaje_proto"]
+aabb = AABB(-0.757294, -1, -0.682561, 1.51459, 2, 1.36513)
+
+[node name="MoveTimer" type="Timer" parent="Personaje_proto"]
+
+[node name="UIStuff" type="Control" parent="Personaje_proto"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Personaje_proto/UIStuff"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -288.0
+offset_top = -228.0
+offset_right = 288.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("11_dek3k")
+
+[node name="DialogBox" parent="Personaje_proto/UIStuff" instance=ExtResource("12_8fhjo")]
+layout_mode = 1
+InputEnable = false
+Timerstart = false
+Dialog = PackedStringArray("Hello bruh", "...", "Uh", "...", "Anyway, see you")
+
+[node name="QuestCompleteDialog" parent="Personaje_proto/UIStuff" instance=ExtResource("12_8fhjo")]
+layout_mode = 1
+InputEnable = false
+Timerstart = false
+Dialog = PackedStringArray("Damn dude that rocks!!!", "...", "Uh, I mean...", "...", "Anyway, see you")
+
+[node name="NameText" type="RichTextLabel" parent="Personaje_proto/UIStuff"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -279.0
+offset_top = -228.0
+offset_right = 105.0
+offset_bottom = -178.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("9_l3wcu")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[left]"
+fit_content = true
+scroll_active = false
+
+[node name="CloseTimer" type="Timer" parent="Personaje_proto/UIStuff"]
+one_shot = true
 
 [node name="Sprite3D" type="Sprite3D" parent="Personaje_proto"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.2, -2.01)
@@ -242,17 +457,120 @@ alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("8_1abgu")
 
-[node name="Personaje_proto2" parent="." instance=ExtResource("6_b6cxs")]
+[node name="Personaje_proto2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.72814, 0, -2.43896)
+script = ExtResource("7_5p0sf")
 character_name = "Quit"
 menu_behaviour = true
 clamp_range = 6.0
 
-[node name="Sprite" parent="Personaje_proto2" index="0"]
+[node name="Sprite" type="Sprite3D" parent="Personaje_proto2"]
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 0.2, 0)
+pixel_size = 0.04
+shaded = true
+alpha_cut = 1
+texture_filter = 0
 texture = ExtResource("9_4umqm")
 
-[node name="Prompt" parent="Personaje_proto2/Sprite" index="0"]
-texture = SubResource("ViewportTexture_aaywf")
+[node name="Prompt" type="Sprite3D" parent="Personaje_proto2/Sprite"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.57319, 0.2)
+visible = false
+texture_filter = 0
+texture = SubResource("ViewportTexture_rehui")
+
+[node name="SubViewport" type="SubViewport" parent="Personaje_proto2/Sprite/Prompt"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(185, 60)
+size_2d_override_stretch = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Personaje_proto2/Sprite/Prompt/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("9_l3wcu")
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center]Interact?[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="SpriteAnimations" parent="Personaje_proto2/Sprite" instance=ExtResource("10_i7htd")]
+libraries = {
+&"AnimLibrary": SubResource("AnimationLibrary_q5onr")
+}
+autoplay = "AnimLibrary/idle"
+
+[node name="PlayerDetect" type="Area3D" parent="Personaje_proto2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Personaje_proto2/PlayerDetect"]
+shape = SubResource("SphereShape3D_few2o")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="Personaje_proto2"]
+aabb = AABB(-0.757294, -1, -0.682561, 1.51459, 2, 1.36513)
+
+[node name="MoveTimer" type="Timer" parent="Personaje_proto2"]
+
+[node name="UIStuff" type="Control" parent="Personaje_proto2"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Personaje_proto2/UIStuff"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -288.0
+offset_top = -228.0
+offset_right = 288.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("11_dek3k")
+
+[node name="DialogBox" parent="Personaje_proto2/UIStuff" instance=ExtResource("12_8fhjo")]
+layout_mode = 1
+InputEnable = false
+Timerstart = false
+Dialog = PackedStringArray("Hello bruh", "...", "Uh", "...", "Anyway, see you")
+
+[node name="QuestCompleteDialog" parent="Personaje_proto2/UIStuff" instance=ExtResource("12_8fhjo")]
+layout_mode = 1
+InputEnable = false
+Timerstart = false
+Dialog = PackedStringArray("Damn dude that rocks!!!", "...", "Uh, I mean...", "...", "Anyway, see you")
+
+[node name="NameText" type="RichTextLabel" parent="Personaje_proto2/UIStuff"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -279.0
+offset_top = -228.0
+offset_right = 105.0
+offset_bottom = -178.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("9_l3wcu")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[left]"
+fit_content = true
+scroll_active = false
+
+[node name="CloseTimer" type="Timer" parent="Personaje_proto2/UIStuff"]
+one_shot = true
 
 [node name="Sprite3D" type="Sprite3D" parent="Personaje_proto2"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.2, -2.01)
@@ -261,21 +579,148 @@ alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("10_pp5m5")
 
-[node name="Personaje_proto3" parent="." instance=ExtResource("6_b6cxs")]
+[node name="Personaje_proto3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.30024, 0, -3.47361)
+script = ExtResource("7_5p0sf")
+character_name = "Testboi"
 clamp_range = 6.0
 interact_player = false
 
-[node name="Sprite" parent="Personaje_proto3" index="0"]
+[node name="Sprite" type="Sprite3D" parent="Personaje_proto3"]
 transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 0.2, 0)
+pixel_size = 0.04
+shaded = true
+alpha_cut = 1
+texture_filter = 0
 texture = ExtResource("11_pp5m5")
 
-[node name="Prompt" parent="Personaje_proto3/Sprite" index="0"]
-texture = SubResource("ViewportTexture_4umqm")
+[node name="Prompt" type="Sprite3D" parent="Personaje_proto3/Sprite"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.57319, 0.2)
+visible = false
+texture_filter = 0
+texture = SubResource("ViewportTexture_yvxia")
+
+[node name="SubViewport" type="SubViewport" parent="Personaje_proto3/Sprite/Prompt"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(185, 60)
+size_2d_override_stretch = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Personaje_proto3/Sprite/Prompt/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("9_l3wcu")
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center]Interact?[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="SpriteAnimations" parent="Personaje_proto3/Sprite" instance=ExtResource("10_i7htd")]
+libraries = {
+&"AnimLibrary": SubResource("AnimationLibrary_q5onr")
+}
+autoplay = "AnimLibrary/idle"
+
+[node name="PlayerDetect" type="Area3D" parent="Personaje_proto3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Personaje_proto3/PlayerDetect"]
+shape = SubResource("SphereShape3D_few2o")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="Personaje_proto3"]
+aabb = AABB(-0.757294, -1, -0.682561, 1.51459, 2, 1.36513)
+
+[node name="MoveTimer" type="Timer" parent="Personaje_proto3"]
+
+[node name="UIStuff" type="Control" parent="Personaje_proto3"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Personaje_proto3/UIStuff"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -288.0
+offset_top = -228.0
+offset_right = 288.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("11_dek3k")
+
+[node name="DialogBox" parent="Personaje_proto3/UIStuff" instance=ExtResource("12_8fhjo")]
+layout_mode = 1
+InputEnable = false
+Timerstart = false
+Dialog = PackedStringArray("Hello bruh", "...", "Uh", "...", "Anyway, see you")
+
+[node name="QuestCompleteDialog" parent="Personaje_proto3/UIStuff" instance=ExtResource("12_8fhjo")]
+layout_mode = 1
+InputEnable = false
+Timerstart = false
+Dialog = PackedStringArray("Damn dude that rocks!!!", "...", "Uh, I mean...", "...", "Anyway, see you")
+
+[node name="NameText" type="RichTextLabel" parent="Personaje_proto3/UIStuff"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -279.0
+offset_top = -228.0
+offset_right = 105.0
+offset_bottom = -178.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("9_l3wcu")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[left]"
+fit_content = true
+scroll_active = false
+
+[node name="CloseTimer" type="Timer" parent="Personaje_proto3/UIStuff"]
+one_shot = true
+
+[node name="TransitionComponent" parent="." node_paths=PackedStringArray("audio") instance=ExtResource("12_el213")]
+next_scene = ExtResource("13_thu7x")
+audio = NodePath("../AudioManager")
+
+[node name="AudioManager" parent="." instance=ExtResource("19_7t7qg")]
+stream = ExtResource("19_l3wcu")
 
 [connection signal="InteractedMenu" from="Personaje_proto" to="." method="_on_personaje_proto_interacted_menu"]
+[connection signal="body_entered" from="Personaje_proto/PlayerDetect" to="Personaje_proto" method="_on_player_detect_body_entered"]
+[connection signal="body_exited" from="Personaje_proto/PlayerDetect" to="Personaje_proto" method="_on_player_detect_body_exited"]
+[connection signal="screen_entered" from="Personaje_proto/VisibleOnScreenNotifier3D" to="Personaje_proto" method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="Personaje_proto/VisibleOnScreenNotifier3D" to="Personaje_proto" method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="timeout" from="Personaje_proto/MoveTimer" to="Personaje_proto" method="_on_timer_timeout"]
+[connection signal="DialogDone" from="Personaje_proto/UIStuff/DialogBox" to="Personaje_proto" method="_on_dialog_box_dialog_done"]
+[connection signal="DialogDone" from="Personaje_proto/UIStuff/QuestCompleteDialog" to="Personaje_proto" method="_on_dialog_box_dialog_done"]
 [connection signal="InteractedMenu" from="Personaje_proto2" to="." method="_on_personaje_proto_interacted_menu"]
-
-[editable path="Personaje_proto"]
-[editable path="Personaje_proto2"]
-[editable path="Personaje_proto3"]
+[connection signal="body_entered" from="Personaje_proto2/PlayerDetect" to="Personaje_proto2" method="_on_player_detect_body_entered"]
+[connection signal="body_exited" from="Personaje_proto2/PlayerDetect" to="Personaje_proto2" method="_on_player_detect_body_exited"]
+[connection signal="screen_entered" from="Personaje_proto2/VisibleOnScreenNotifier3D" to="Personaje_proto2" method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="Personaje_proto2/VisibleOnScreenNotifier3D" to="Personaje_proto2" method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="timeout" from="Personaje_proto2/MoveTimer" to="Personaje_proto2" method="_on_timer_timeout"]
+[connection signal="DialogDone" from="Personaje_proto2/UIStuff/DialogBox" to="Personaje_proto2" method="_on_dialog_box_dialog_done"]
+[connection signal="DialogDone" from="Personaje_proto2/UIStuff/QuestCompleteDialog" to="Personaje_proto2" method="_on_dialog_box_dialog_done"]
+[connection signal="body_entered" from="Personaje_proto3/PlayerDetect" to="Personaje_proto3" method="_on_player_detect_body_entered"]
+[connection signal="body_exited" from="Personaje_proto3/PlayerDetect" to="Personaje_proto3" method="_on_player_detect_body_exited"]
+[connection signal="screen_entered" from="Personaje_proto3/VisibleOnScreenNotifier3D" to="Personaje_proto3" method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="Personaje_proto3/VisibleOnScreenNotifier3D" to="Personaje_proto3" method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="timeout" from="Personaje_proto3/MoveTimer" to="Personaje_proto3" method="_on_timer_timeout"]
+[connection signal="DialogDone" from="Personaje_proto3/UIStuff/DialogBox" to="Personaje_proto3" method="_on_dialog_box_dialog_done"]
+[connection signal="DialogDone" from="Personaje_proto3/UIStuff/QuestCompleteDialog" to="Personaje_proto3" method="_on_dialog_box_dialog_done"]

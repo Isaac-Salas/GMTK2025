@@ -1,6 +1,6 @@
 extends Node3D
 const WORLD = preload("res://scenes/world.tscn")
-
+@export var transition : TransitionComponent
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 func _on_personaje_proto_interacted_menu(Name: String) -> void:
 	match Name:
 		"Play":
-			get_tree().change_scene_to_packed(WORLD)
+			if transition != null:
+				transition.transition_out()
 		"Quit":
 			get_tree().quit()

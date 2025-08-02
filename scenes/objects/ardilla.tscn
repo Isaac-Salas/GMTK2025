@@ -9,6 +9,7 @@ viewport_path = NodePath("Sprite/Prompt/SubViewport")
 [node name="ObjectProto" instance=ExtResource("1_2ruol")]
 
 [node name="Sprite" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.1, 0)
 texture = ExtResource("2_2lfq0")
 
 [node name="Prompt" parent="Sprite" index="0"]

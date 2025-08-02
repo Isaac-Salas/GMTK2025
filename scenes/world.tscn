@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cim5ukairdcvq"]
+[gd_scene load_steps=22 format=3 uid="uid://cim5ukairdcvq"]
 
 [ext_resource type="Texture2D" uid="uid://boh8i64e6ower" path="res://assets/Mundo/Mundo.png" id="1_4wyf3"]
 [ext_resource type="Script" uid="uid://n6gujomtfngi" path="res://scenes/world.gd" id="1_qfnet"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://cnvp2q56pjhvg" path="res://scenes/obstacles/riesgo_proto.tscn" id="8_7r4gi"]
 [ext_resource type="Texture2D" uid="uid://n3drxxqjtaut" path="res://assets/Jugador/Placeholder.png" id="9_w7kh3"]
 [ext_resource type="Script" uid="uid://c47wa3x3l2l8j" path="res://scenes/test.gd" id="10_e3hyu"]
+[ext_resource type="PackedScene" uid="uid://ddlyq4ertop1w" path="res://components/transition_component.tscn" id="11_e3hyu"]
+[ext_resource type="PackedScene" uid="uid://57gf4vc0lkv8" path="res://components/audio_manager.tscn" id="12_jhx03"]
+[ext_resource type="AudioStream" uid="uid://odk150h5we1o" path="res://assets/Music/Evening.mp3" id="13_o8fc1"]
 
 [sub_resource type="Gradient" id="Gradient_i7141"]
 offsets = PackedFloat32Array(0, 0.3, 0.6, 1)
@@ -19,18 +22,14 @@ metadata/_snap_enabled = true
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_w7kh3"]
 gradient = SubResource("Gradient_i7141")
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4wyf3"]
-
-[sub_resource type="Sky" id="Sky_e3hyu"]
-sky_material = SubResource("PanoramaSkyMaterial_4wyf3")
-
 [sub_resource type="Environment" id="Environment_qfnet"]
-background_mode = 2
-background_color = Color(0.29997, 0.511606, 1, 1)
-sky = SubResource("Sky_e3hyu")
+background_mode = 1
+background_color = Color(0.423529, 0.337255, 0.443137, 1)
+background_energy_multiplier = 0.01
 fog_light_color = Color(0.22431, 0.246636, 0.281735, 1)
 volumetric_fog_density = 0.0
 adjustment_enabled = true
+adjustment_contrast = 1.1
 adjustment_color_correction = SubResource("GradientTexture1D_w7kh3")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7141"]
@@ -46,6 +45,13 @@ grow_amount = 4.055
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4wyf3"]
 size = Vector3(190, 0.5, 190)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhx03"]
+albedo_color = Color(0.423529, 0.337255, 0.443137, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o8fc1"]
+material = SubResource("StandardMaterial3D_jhx03")
+size = Vector2(200, 200)
 
 [sub_resource type="Curve3D" id="Curve3D_q5onr"]
 closed = true
@@ -66,6 +72,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.237, 0.5, 33.2014)
 override = true
 ardillas = 2
 chicles = 3
+unlock_all_abilities = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.984808, -6.64077e-10, 0.173648, -0.173648, -7.5904e-09, 0.984808, 6.64077e-10, -1, -7.59041e-09, 0, 6.49755, 0)
@@ -90,6 +97,10 @@ texture = ExtResource("1_4wyf3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_4wyf3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.50816, 0)
+mesh = SubResource("PlaneMesh_o8fc1")
 
 [node name="Riesgos" type="Node3D" parent="."]
 
@@ -132,3 +143,9 @@ transform = Transform3D(7.54632e-08, -1.86265e-09, 1, 0.0186016, 0.999827, 4.585
 pixel_size = 0.04
 texture = ExtResource("9_w7kh3")
 script = ExtResource("10_e3hyu")
+
+[node name="TransitionComponent" parent="." instance=ExtResource("11_e3hyu")]
+enable_in = true
+
+[node name="AudioManager" parent="." instance=ExtResource("12_jhx03")]
+stream = ExtResource("13_o8fc1")

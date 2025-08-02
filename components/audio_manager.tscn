@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://57gf4vc0lkv8"]
+
+[ext_resource type="Script" uid="uid://c8xm8u4krlrqc" path="res://components/audio_manager.gd" id="2_j62r5"]
+
+[node name="AudioManager" type="AudioStreamPlayer"]
+process_mode = 3
+volume_db = -50.0
+script = ExtResource("2_j62r5")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

@@ -17,6 +17,7 @@ var input_direction : Vector2
 @export var todo_estado : Array[String]
 @export var overlays_on : bool = true
 @export var bilboard_sprite : bool = false
+@export var unlock_all_abilities : bool = false
 
 @onready var overlays: Control = $Overlays
 @onready var ardillas_count: RichTextLabel = $Overlays/VBoxContainer/HBoxContainer/ArdillasCount
@@ -30,6 +31,7 @@ var input_direction : Vector2
 
 @onready var touched_obstacle : String 
 @onready var unlocked_habilities : Array
+
 
 
 signal MoveState(state_name : String)
@@ -95,24 +97,33 @@ func get_input_movement():
 			
 
 	else:
-		match touched_obstacle:
-			"Escalar":
-				check_abilities(1)
-			"Agua":
-				check_abilities(2)
-					
+		if unlock_all_abilities == false:
+			match touched_obstacle:
+				"Escalar":
+					check_abilities(1)
+				"Agua":
+					check_abilities(2)
+		else:
+			match touched_obstacle:
+				"Escalar":
+					check_abilities(1, true)
+				"Agua":
+					check_abilities(2, true)
+						
 		
 
-func check_abilities(index_to_check : int):
+func check_abilities(index_to_check : int, override_all : bool = false):
 	unlocked_habilities = [
 		SaveManager.Habilidad1_1, 
 		SaveManager.Habilidad2_1,
 		SaveManager.Habilidad3_1, 
 		SaveManager.Habilidad4_1]
 	
-	if unlocked_habilities[index_to_check] == false:
+	if unlocked_habilities[index_to_check] == false and override_all == false:
 		throw_player_back()
-	else:
+	elif unlocked_habilities[index_to_check] == true :
+		throw_player_back(true)
+	elif override_all == true:
 		throw_player_back(true)
 
 
@@ -216,8 +227,10 @@ func _on_move_state(state_name : String) -> void:
 			update_state_text("RUNNING")
 		"Escalando":
 			sprite_animations.play("walking")
+			update_state_text("CLIMBING")
 		"Idle":
 			sprite_animations.play("idle")
+			update_state_text("JUST CHILLING")
 			idle_sprite()
 				
 
