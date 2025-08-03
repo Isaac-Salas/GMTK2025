@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c5hki68aq0kpt"]
+[gd_scene load_steps=14 format=3 uid="uid://c5hki68aq0kpt"]
 
 [ext_resource type="Script" uid="uid://c36w1md4rb5et" path="res://components/personaje_comp.gd" id="1_e3jlt"]
 [ext_resource type="Texture2D" uid="uid://bywqe8vpb6s5c" path="res://assets/Aseprites/Robot tierroso.png" id="2_e3jlt"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://jg03u502ldhj" path="res://scenes/animations/sprite_animations.tscn" id="4_6va0f"]
 [ext_resource type="PackedScene" uid="uid://bljhsfid7fwt5" path="res://components/dialog_box.tscn" id="5_ey1ox"]
 [ext_resource type="Texture2D" uid="uid://dj3b7ucebv66q" path="res://assets/dialogbox/background.png" id="5_few2o"]
+[ext_resource type="PackedScene" uid="uid://wa47ch1e726p" path="res://components/move_component.tscn" id="7_v1a4o"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_e3jlt"]
 viewport_path = NodePath("Sprite/Prompt/SubViewport")
@@ -153,11 +154,6 @@ autoplay = "AnimLibrary/idle"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetect"]
 shape = SubResource("SphereShape3D_few2o")
 
-[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-aabb = AABB(-0.757294, -1, -0.682561, 1.51459, 2, 1.36513)
-
-[node name="MoveTimer" type="Timer" parent="."]
-
 [node name="UIStuff" type="Control" parent="."]
 process_mode = 3
 visible = false
@@ -217,10 +213,11 @@ scroll_active = false
 [node name="CloseTimer" type="Timer" parent="UIStuff"]
 one_shot = true
 
+[node name="MoveComponent" parent="." node_paths=PackedStringArray("target", "sprite_animations") instance=ExtResource("7_v1a4o")]
+target = NodePath("..")
+sprite_animations = NodePath("../Sprite/SpriteAnimations")
+
 [connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detect_body_entered"]
 [connection signal="body_exited" from="PlayerDetect" to="." method="_on_player_detect_body_exited"]
-[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
-[connection signal="timeout" from="MoveTimer" to="." method="_on_timer_timeout"]
 [connection signal="DialogDone" from="UIStuff/DialogBox" to="." method="_on_dialog_box_dialog_done"]
 [connection signal="DialogDone" from="UIStuff/QuestCompleteDialog" to="." method="_on_dialog_box_dialog_done"]

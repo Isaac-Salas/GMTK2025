@@ -5,7 +5,7 @@ class_name PersonajeComponent
 @onready var prompt_sprite: Sprite3D = $Sprite/Prompt
 
 
-@onready var move_timer: Timer = $MoveTimer
+
 
 @export var normal_dialog : PackedStringArray
 @export var quest_end : PackedStringArray
@@ -91,27 +91,6 @@ func prompt(toggle : bool):
 			prompt_sprite.visible = false
 	
 
-
-func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
-	move_timer.start(timeout_to_move)
-
-
-func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
-	move_timer.stop()
-
-
-func _on_timer_timeout() -> void:
-	animate_moving(self, move_duration, range_of_movement)
-	sprite_animations.play("AnimLibrary/walking")
-	
-
-func animate_moving(target : Node3D, time: float = 1.0, range_om : float = 5.0 ):
-	var tween : Tween = create_tween()
-	var new_vector : Vector3 = target.global_position + Vector3(randf_range(-range_om, range_om) ,0.0, randf_range(-range_om, range_om))
-	new_vector = new_vector.clamp(Vector3(-clamp_range, 0.0, -clamp_range), Vector3(clamp_range, 0.0, clamp_range))
-	tween.tween_property(target, "global_position", new_vector , time)
-	await tween.finished
-	sprite_animations.play("AnimLibrary/idle")
 
 
 func _on_dialog_box_dialog_done() -> void:
