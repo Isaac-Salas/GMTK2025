@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://rpny8k0lfvfr"]
+
+[ext_resource type="PackedScene" uid="uid://btjahidcpij0l" path="res://components/3dTimedSpawn.tscn" id="1_j4tw0"]
+[ext_resource type="PackedScene" uid="uid://cmvcpnf3y5rbm" path="res://scenes/obstacles/3D/Tree.tscn" id="2_j4tw0"]
+
+[node name="3dTimedSpawn" instance=ExtResource("1_j4tw0")]
+
+[node name="SpawnerComponent" parent="." index="0"]
+will_spawn = ExtResource("2_j4tw0")

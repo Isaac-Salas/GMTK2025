@@ -37,8 +37,8 @@ var Chicle4_2 : bool = false
 var Chicle4_3 : bool = false
 var Buff4_1: bool = false
 
-var Ardillas_TOTAL: int = 0
-var Chicles_TOTAL: int = 0
+var Ardillas_TOTAL: int = 1
+var Chicles_TOTAL: int = 1
 var Tutorial_Completo : bool = false
 
 

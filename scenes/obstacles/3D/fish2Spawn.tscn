@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d35ggjfjxecpv"]
+
+[ext_resource type="PackedScene" uid="uid://btjahidcpij0l" path="res://components/3dTimedSpawn.tscn" id="1_dnkvl"]
+[ext_resource type="PackedScene" uid="uid://dk4qbnxhf26fb" path="res://scenes/obstacles/3D/Fish2.tscn" id="2_dnkvl"]
+
+[node name="3dTimedSpawn" instance=ExtResource("1_dnkvl")]
+
+[node name="SpawnerComponent" parent="." index="0"]
+will_spawn = ExtResource("2_dnkvl")

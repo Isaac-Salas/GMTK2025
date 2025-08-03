@@ -102,6 +102,8 @@ func update_timer(go : bool):
 
 func get_input_movement():
 	input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	if Input.is_action_just_pressed("Reset"):
+		go_to_race()
 	if touched_obstacle == "":
 		if Input.is_action_pressed("run"):
 			self.velocity.x = input_direction.x * sprint_speed
@@ -213,8 +215,8 @@ func update_counts():
 	chicles_count.append_text("X " + str(chicles))
 	
 func reset_counts():
-	SaveManager.setter("Ardillas_TOTAL", 0)
-	SaveManager.setter("Chicles_TOTAL", 0)
+	SaveManager.setter("Ardillas_TOTAL", 1)
+	SaveManager.setter("Chicles_TOTAL", 1)
 	SaveManager.save_game()
 	set_values()
 	update_counts()
@@ -270,7 +272,7 @@ func start_race_mode():
 	if music != null:
 		music.fade(-80.0,1.0)
 		await music.fade_audio.finished
-		music.startplay(music.ROCKET_POWER)
+		music.startplay(music.BURN_THE_WORLD_WALTZ_)
 		music.fade(-5.0, 1.0)
 	StartRace.emit(true)
 	race_mode = true
@@ -328,17 +330,29 @@ func _on_move_state(state_name : String) -> void:
 			if ardilla_comiendo == false:
 				ardilla_animations.play("Ardilla_Run")
 		"Escalando":
+			sprite_animations.speed_scale = 0.5
 			sprite_animations.play("walking")
 			update_state_text("CLIMBING", "ffc384")
 			ardilla_animations.speed_scale = 1.0
 			if ardilla_comiendo == false:
 				ardilla_animations.play("Ardilla_Run")
 		"Nadando":
+			sprite_animations.speed_scale = 0.5
 			sprite_animations.play("walking")
 			update_state_text("SWIMING", "accce4")
 			ardilla_animations.speed_scale = 1.0
 			if ardilla_comiendo == false:
 				ardilla_animations.play("Ardilla_Run")
+		
+		"Volando":
+			sprite_animations.speed_scale = 0.5
+			sprite_animations.play("walking")
+			update_state_text("FLYING", "b0a9e4")
+			ardilla_animations.speed_scale = 1.0
+			if ardilla_comiendo == false:
+				ardilla_animations.play("Ardilla_Run")
+		
+		
 		"Idle":
 			sprite_animations.play("idle")
 			update_state_text("JUST CHILLING")

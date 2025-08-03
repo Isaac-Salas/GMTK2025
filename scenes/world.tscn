@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://cim5ukairdcvq"]
+[gd_scene load_steps=87 format=3 uid="uid://cim5ukairdcvq"]
 
 [ext_resource type="Texture2D" uid="uid://boh8i64e6ower" path="res://assets/Mundo/Mundo.png" id="1_4wyf3"]
 [ext_resource type="Script" uid="uid://n6gujomtfngi" path="res://scenes/world.gd" id="1_qfnet"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://57gf4vc0lkv8" path="res://components/audio_manager.tscn" id="12_jhx03"]
 [ext_resource type="Script" uid="uid://swirjnlfh6ki" path="res://scenes/day_animations.gd" id="15_xo05s"]
 [ext_resource type="PackedScene" uid="uid://u4cdq4iqwb6a" path="res://scenes/characters/Garang.tscn" id="16_luhhm"]
+[ext_resource type="PackedScene" uid="uid://bwlq41to3aofh" path="res://scenes/objects/chicle.tscn" id="16_pq8jk"]
 [ext_resource type="PackedScene" uid="uid://bmcv3wweqwm1u" path="res://scenes/characters/Buklo.tscn" id="17_fh13f"]
 [ext_resource type="PackedScene" uid="uid://d1pjngd88je7e" path="res://scenes/characters/SCIENTISTS/Dr_Kela.tscn" id="17_navra"]
 [ext_resource type="PackedScene" uid="uid://colngmt12c05" path="res://scenes/characters/SCIENTISTS/Dr_Obvod.tscn" id="18_luhhm"]
@@ -48,7 +49,6 @@
 [ext_resource type="PackedScene" uid="uid://d3dp4mwkndxrh" path="res://scenes/objects/KeyItems/pelota.tscn" id="26_3l05q"]
 [ext_resource type="PackedScene" uid="uid://d0j4cvja3tvxg" path="res://scenes/characters/QuestGivers/nene4.tscn" id="26_qg546"]
 [ext_resource type="PackedScene" uid="uid://c3ve0lytiysg0" path="res://scenes/objects/KeyItems/perrit.tscn" id="27_x28ej"]
-[ext_resource type="PackedScene" uid="uid://btjahidcpij0l" path="res://components/3dTimedSpawn.tscn" id="28_0nbtd"]
 [ext_resource type="PackedScene" uid="uid://b0uslxta2ko3q" path="res://scenes/objects/KeyItems/pogo.tscn" id="28_1jxku"]
 [ext_resource type="PackedScene" uid="uid://nom0qoojrwe6" path="res://scenes/objects/KeyItems/refresco.tscn" id="29_1dgkn"]
 [ext_resource type="PackedScene" uid="uid://bk5tfco7n0bwl" path="res://scenes/objects/KeyItems/tortuga.tscn" id="30_e68xj"]
@@ -57,8 +57,13 @@
 [ext_resource type="PackedScene" uid="uid://ca6q3c84b8c5n" path="res://scenes/Houses/Red.tscn" id="43_pf35h"]
 [ext_resource type="PackedScene" uid="uid://bcylky58cyg28" path="res://scenes/Houses/Blue.tscn" id="44_iexy4"]
 [ext_resource type="PackedScene" uid="uid://dlpwfg2352fll" path="res://scenes/Houses/Purple.tscn" id="45_pf35h"]
+[ext_resource type="PackedScene" uid="uid://rpny8k0lfvfr" path="res://scenes/obstacles/3D/treeSpawn.tscn" id="57_66tox"]
 [ext_resource type="Script" uid="uid://cekw6v58b26ho" path="res://scenes/win!!!.gd" id="58_npbic"]
+[ext_resource type="PackedScene" uid="uid://dcjriv7e1uer5" path="res://scenes/obstacles/3D/boxSpawn.tscn" id="58_pq8jk"]
 [ext_resource type="FontFile" uid="uid://ojhacg2t03ld" path="res://assets/fonts/geometry-soft-pro/Geometry_Soft_Pro-Bold_N.otf" id="59_e6ckp"]
+[ext_resource type="PackedScene" uid="uid://bxxyjhldxut0m" path="res://scenes/obstacles/3D/fishSpawn.tscn" id="59_q57r8"]
+[ext_resource type="PackedScene" uid="uid://d35ggjfjxecpv" path="res://scenes/obstacles/3D/fish2Spawn.tscn" id="60_4kmvx"]
+[ext_resource type="PackedScene" uid="uid://cs4uv83ewv4ll" path="res://scenes/obstacles/3D/SpikeSpawn.tscn" id="61_myjip"]
 
 [sub_resource type="Gradient" id="Gradient_i7141"]
 offsets = PackedFloat32Array(0, 0.3, 0.6, 1)
@@ -296,7 +301,6 @@ _data = {
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_qfnet")
-debugging = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qfnet")
@@ -398,7 +402,6 @@ shape = SubResource("BoxShape3D_jhx03")
 [node name="GoalBarrier" type="StaticBody3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, -5, 43)
 script = ExtResource("8_7t5mc")
-override = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/GoalBarrier"]
 shape = SubResource("BoxShape3D_dss4m")
@@ -548,9 +551,29 @@ Zona = 4
 Numero = 2
 
 [node name="Ardilla12" parent="Objetos" instance=ExtResource("7_w7kh3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.5503, 0, -34.3588)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5503, 0, -34.3588)
 Zona = 4
 Numero = 2
+
+[node name="Chicle2" parent="Objetos" instance=ExtResource("16_pq8jk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0333, 0, 1.28845)
+Zona = 1
+Numero = 3
+
+[node name="Chicle4" parent="Objetos" instance=ExtResource("16_pq8jk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6182, 0, 14.9002)
+Zona = 2
+Numero = 3
+
+[node name="Chicle6" parent="Objetos" instance=ExtResource("16_pq8jk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6182, 0, -16.0998)
+Zona = 3
+Numero = 3
+
+[node name="Chicle8" parent="Objetos" instance=ExtResource("16_pq8jk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.2471, 0, -27.9141)
+Zona = 4
+Numero = 3
 
 [node name="Personajes" type="Node3D" parent="."]
 
@@ -787,23 +810,59 @@ libraries = {
 }
 autoplay = "AnimLibrary/walking"
 
-[node name="3dTimedSpawn" parent="RaceModeManager" instance=ExtResource("28_0nbtd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8076, 8, 41.7046)
+[node name="3dTimedSpawn" parent="RaceModeManager" instance=ExtResource("57_66tox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 8, 43)
 
-[node name="3dTimedSpawn2" parent="RaceModeManager" instance=ExtResource("28_0nbtd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9676, 8, 41.7046)
+[node name="3dTimedSpawn2" parent="RaceModeManager" instance=ExtResource("58_pq8jk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 8, 39)
 
-[node name="3dTimedSpawn3" parent="RaceModeManager" instance=ExtResource("28_0nbtd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.3269, 8, 45.6823)
+[node name="3dTimedSpawn3" parent="RaceModeManager" instance=ExtResource("58_pq8jk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.424, 8, 45.328)
 
-[node name="3dTimedSpawn4" parent="RaceModeManager" instance=ExtResource("28_0nbtd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0744, 8, 41.7046)
+[node name="3dTimedSpawn4" parent="RaceModeManager" instance=ExtResource("59_q57r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 8, 41)
 
-[node name="3dTimedSpawn5" parent="RaceModeManager" instance=ExtResource("28_0nbtd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2344, 8, 41.7046)
+[node name="3dTimedSpawn5" parent="RaceModeManager" instance=ExtResource("60_4kmvx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 8, 39)
 
-[node name="3dTimedSpawn6" parent="RaceModeManager" instance=ExtResource("28_0nbtd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5937, 8, 45.6823)
+[node name="3dTimedSpawn6" parent="RaceModeManager" instance=ExtResource("61_myjip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 8, 44)
+
+[node name="3dTimedSpawn13" parent="RaceModeManager" instance=ExtResource("57_66tox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.7619, 8, -44.0649)
+
+[node name="3dTimedSpawn14" parent="RaceModeManager" instance=ExtResource("58_pq8jk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.76188, 8, -48.0649)
+
+[node name="3dTimedSpawn15" parent="RaceModeManager" instance=ExtResource("58_pq8jk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33791, 8, -41.737)
+
+[node name="3dTimedSpawn16" parent="RaceModeManager" instance=ExtResource("59_q57r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.761879, 8, -46.0649)
+
+[node name="3dTimedSpawn17" parent="RaceModeManager" instance=ExtResource("60_4kmvx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.23812, 8, -48.0649)
+
+[node name="3dTimedSpawn18" parent="RaceModeManager" instance=ExtResource("61_myjip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76188, 8, -43.0649)
+
+[node name="3dTimedSpawn7" parent="RaceModeManager" instance=ExtResource("57_66tox")]
+transform = Transform3D(0.0923358, 0, 0.995728, 0, 1, 0, -0.995728, 0, 0.0923358, 42.9632, 8, 33.482)
+
+[node name="3dTimedSpawn8" parent="RaceModeManager" instance=ExtResource("58_pq8jk")]
+transform = Transform3D(0.0923358, 0, 0.995728, 0, 1, 0, -0.995728, 0, 0.0923358, 40.4576, 8, 17.181)
+
+[node name="3dTimedSpawn9" parent="RaceModeManager" instance=ExtResource("58_pq8jk")]
+transform = Transform3D(0.0923358, 0, 0.995728, 0, 1, 0, -0.995728, 0, 0.0923358, 47.2594, 8, 12.3645)
+
+[node name="3dTimedSpawn10" parent="RaceModeManager" instance=ExtResource("59_q57r8")]
+transform = Transform3D(0.0923358, 0, 0.995728, 0, 1, 0, -0.995728, 0, 0.0923358, 43.0955, 8, 10.3956)
+
+[node name="3dTimedSpawn11" parent="RaceModeManager" instance=ExtResource("60_4kmvx")]
+transform = Transform3D(0.0923358, 0, 0.995728, 0, 1, 0, -0.995728, 0, 0.0923358, 41.935, 8, 1.24936)
+
+[node name="3dTimedSpawn12" parent="RaceModeManager" instance=ExtResource("61_myjip")]
+transform = Transform3D(0.0923358, 0, 0.995728, 0, 1, 0, -0.995728, 0, 0.0923358, 45.7133, 8, 14.6555)
 
 [node name="WIN!!!" type="Control" parent="." node_paths=PackedStringArray("transition")]
 modulate = Color(1, 1, 1, 0)
