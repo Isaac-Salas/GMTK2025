@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cim5ukairdcvq"]
+[gd_scene load_steps=30 format=3 uid="uid://cim5ukairdcvq"]
 
 [ext_resource type="Texture2D" uid="uid://boh8i64e6ower" path="res://assets/Mundo/Mundo.png" id="1_4wyf3"]
 [ext_resource type="Script" uid="uid://n6gujomtfngi" path="res://scenes/world.gd" id="1_qfnet"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d3f4w4evjj14n" path="res://assets/Mundo/MundoDetalle_n.png" id="4_i7141"]
 [ext_resource type="Script" uid="uid://pi5y46fygqd7" path="res://scripts/player_following_cam.gd" id="4_k0juu"]
 [ext_resource type="Script" uid="uid://bahg56iq72biq" path="res://scripts/floor.gd" id="4_o8fc1"]
+[ext_resource type="Script" uid="uid://cfvbre7idakdb" path="res://scenes/race_barrier.gd" id="7_7t5mc"]
 [ext_resource type="PackedScene" uid="uid://clpp612804f2t" path="res://scenes/objects/ardilla.tscn" id="7_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://c5hki68aq0kpt" path="res://scenes/characters/personaje_proto.tscn" id="8_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://cnvp2q56pjhvg" path="res://scenes/obstacles/riesgo_proto.tscn" id="8_7r4gi"]
@@ -151,6 +152,7 @@ mesh = SubResource("PlaneMesh_o8fc1")
 
 [node name="RaceBarrier" type="StaticBody3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0)
+script = ExtResource("7_7t5mc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/RaceBarrier"]
 shape = SubResource("BoxShape3D_jhx03")
@@ -221,3 +223,4 @@ script = ExtResource("15_xo05s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6309, 0, 28.9205)
 
 [connection signal="DayEnd" from="Player" to="DayAnimations" method="_on_player_day_end"]
+[connection signal="StartRace" from="Player" to="Floor/RaceBarrier" method="_on_player_start_race"]

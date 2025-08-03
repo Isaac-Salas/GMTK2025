@@ -37,10 +37,13 @@ var input_direction : Vector2
 
 @onready var touched_obstacle : String 
 @onready var unlocked_habilities : Array
-
+@onready var race_mode : bool
+@onready var ardilla_animations: AnimationPlayer = $Overlays/ArdillaAnimations
+@onready var ardilla: Sprite3D = $Overlays/SubViewport/ArdillaContainer/Ardilla
+@onready var ardilla_comiendo : bool
 
 signal DayEnd()
-signal StartRace()
+signal StartRace(state : bool)
 signal MoveState(state_name : String)
 
 
@@ -215,18 +218,34 @@ func reset_counts():
 
 func _on_timer_timeout() -> void:
 	chicles -= 1
+	#print("Menoschukle")
+	ardilla_comiendo = true
+	ardilla_animations.speed_scale = 2.0
+	ardilla_animations.play("Eating")
+	ardilla_wait()
+	
+	
 	if chicles == 0:
 		ardillas -= 1
 		chicles = SaveManager.Chicles_TOTAL
-		print(SaveManager.Chicles_TOTAL)
+		#print(SaveManager.Chicles_TOTAL)
+		ardilla_animations.speed_scale = 1.0
+		ardilla_animations.play("ArdillaTired")
+		
+		
 	if ardillas == 0:
 		print("Se acaba el dia")
 		
 		day_pass()
 		set_values()
 	if days_left == 0:
-		print("GOTO RACE!!!")
-		go_to_race()
+		if race_mode == false:
+			print("GOTO RACE!!!")
+			go_to_race()
+		else:
+			print("GOTO HOME!!!")
+			go_to_home()
+			
 	update_counts()
 
 func day_pass():
@@ -236,15 +255,35 @@ func day_pass():
 
 func go_to_race():
 	if race_marker != null and transition != null:
-		StartRace.emit()
+		StartRace.emit(true)
 		transition.trans_inside_world()
 		await transition.animation_player.animation_finished
 		self.global_position = race_marker.global_position
+		start_race_mode()
+
+
+func start_race_mode():
+	race_mode = true
+	reset_day_counter(1)
+	contador_dias.clear()
+	contador_dias.bbcode_enabled = true
+	contador_dias.append_text("[center]SIRKUIT RACE[/center]")
+
+func go_to_home():
+	if house_marker != null and transition != null:
+		#StartRace.emit()
+		StartRace.emit(false)
+		race_mode = false
+		transition.trans_inside_world()
+		await transition.animation_player.animation_finished
+		self.global_position = house_marker.global_position
 		reset_day_counter()
 		
 
-func reset_day_counter():
-	days_left = days_to_explore
+
+
+func reset_day_counter(reset_to : int = days_to_explore):
+	days_left = reset_to
 	update_day_counter()
 
 func update_day_counter():
@@ -253,25 +292,49 @@ func update_day_counter():
 	contador_dias.append_text("[center]Days left: ")
 	contador_dias.append_text(str(days_left) + "[/center]")
 
+
+
+
 func _on_move_state(state_name : String) -> void:
-	
+	ardilla_wait()
 	match state_name:
 		"Caminando":
 			sprite_animations.speed_scale = 1.0
 			sprite_animations.play("walking")
 			update_state_text("WALKING")
+			ardilla_animations.speed_scale = 0.5
+			if ardilla_comiendo == false:
+				ardilla_animations.play("Ardilla_Run")
 		"Corriendo":
 			sprite_animations.speed_scale = 2.0
 			sprite_animations.play("walking")
 			update_state_text("RUNNING")
+			ardilla_animations.speed_scale = 1.0
+			if ardilla_comiendo == false:
+				ardilla_animations.play("Ardilla_Run")
 		"Escalando":
 			sprite_animations.play("walking")
 			update_state_text("CLIMBING")
+			ardilla_animations.speed_scale = 1.0
+			if ardilla_comiendo == false:
+				ardilla_animations.play("Ardilla_Run")
 		"Idle":
 			sprite_animations.play("idle")
 			update_state_text("JUST CHILLING")
 			idle_sprite()
+			ardilla_animations.speed_scale = 1.0
+			idle_ardilla_sprite()
+			if ardilla_comiendo == false:
+				ardilla_animations.play("Idle")
 				
+
+func ardilla_wait():
+	if ardilla_animations.is_playing():
+		await ardilla_animations.animation_finished
+		ardilla_comiendo = false
+
+func idle_ardilla_sprite():
+	ardilla.rotation_degrees = Vector3.ZERO
 
 func update_state_text(text:String):
 	estado_display.clear()
