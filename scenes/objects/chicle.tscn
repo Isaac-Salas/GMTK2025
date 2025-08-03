@@ -1,15 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwlq41to3aofh"]
 
 [ext_resource type="PackedScene" uid="uid://cpl3he238umye" path="res://scenes/objects/object_proto.tscn" id="1_0yiuo"]
-[ext_resource type="Texture2D" uid="uid://cce3xfbwdau3k" path="res://assets/Objetos/Gumball.png" id="2_4mpay"]
+[ext_resource type="Texture2D" uid="uid://b5i5q0jgecfvf" path="res://assets/Aseprites/Chicle.png" id="2_4mpay"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4mpay"]
 viewport_path = NodePath("Sprite/Prompt/SubViewport")
 
-[node name="ObjectProto" instance=ExtResource("1_0yiuo")]
+[node name="Chicle" instance=ExtResource("1_0yiuo")]
 Tipo = "Chicle"
 
 [node name="Sprite" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.2, 0)
 texture = ExtResource("2_4mpay")
 
 [node name="Prompt" parent="Sprite" index="0"]

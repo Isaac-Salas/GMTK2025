@@ -8,6 +8,8 @@ class_name TransitionComponent
 @onready var control: Control = $Control
 @export var audio : MusicComponent
 
+signal TransitionDone()
+
 	
 
 # Called when the node enters the scene tree for the first time.
@@ -41,4 +43,5 @@ func trans_inside_world():
 	#control.visible = false
 	animation_player.play_backwards("tansition")
 	get_tree().paused = false
+	TransitionDone.emit()
 	

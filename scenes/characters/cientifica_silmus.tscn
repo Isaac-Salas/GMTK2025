@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://0d2dpc8xcmj4"]
+
+[ext_resource type="PackedScene" uid="uid://c5hki68aq0kpt" path="res://scenes/characters/personaje_proto.tscn" id="1_j6slv"]
+[ext_resource type="Texture2D" uid="uid://t33qmvhy5knh" path="res://assets/Aseprites/Cientifica.png" id="2_iq8xe"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_i2ngo"]
+viewport_path = NodePath("Sprite/Prompt/SubViewport")
+
+[node name="Personaje_proto" instance=ExtResource("1_j6slv")]
+normal_dialog = PackedStringArray("...", "Its working?...", " [color=#b0eb93] YES!!! [/color]", "I mean...", " [color=#b0eb93] You [/color] are working.", "Welcome to life  [color=#b0eb93] Silmus [/color] ", "I made you for one very important task...", "[wave] Winning THE GREAT SIRKUIT RACE[/wave] ")
+character_name = "Dr. Kring"
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_iq8xe")
+
+[node name="Prompt" parent="Sprite" index="0"]
+texture = SubResource("ViewportTexture_i2ngo")
+
+[node name="DialogBox" parent="UIStuff" index="1"]
+text = "[center]"
+
+[node name="QuestCompleteDialog" parent="UIStuff" index="2"]
+text = "[center]"

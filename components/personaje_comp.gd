@@ -20,6 +20,7 @@ class_name PersonajeComponent
 @export var menu_behaviour : bool = false
 @export var clamp_range : float = 37.0
 @export var interact_player : bool = true
+@export var force_dialog : bool
 
 @onready var sprite_animations: AnimationPlayer = $Sprite/SpriteAnimations
 @onready var texture_rect: TextureRect = $UIStuff/TextureRect
@@ -28,6 +29,10 @@ class_name PersonajeComponent
 @onready var name_text: RichTextLabel = $UIStuff/NameText
 @onready var close_timer: Timer = $UIStuff/CloseTimer
 @onready var ui_stuff: Control = $UIStuff
+@onready var move_component: MoveComponent = $MoveComponent
+@export var Zone : int
+@export var Number : int 
+@onready var spawner_component: SpawnerComponent = $SpawnerComponent
 
 
 signal InteractedMenu(Name : String)
@@ -42,6 +47,8 @@ func _ready() -> void:
 		dialog_box.Dialog = normal_dialog
 	if quest_end != null:
 		quest_complete_dialog.Dialog = quest_end
+	if force_dialog == true:
+		start_dialog(dialog_box)
 
 func grab_toggle(state : bool):
 	match  state:
@@ -62,11 +69,11 @@ func  _input(event: InputEvent) -> void:
 		else:
 			InteractedMenu.emit(character_name)
 
-func start_dialog(dialog_comp : DialogComponent):
+func start_dialog(dialog_comp : DialogComponent, line_override : int = 0):
 	
 	ui_stuff.visible = true
 	dialog_comp.clearcenter()
-	dialog_comp.linecount = 0
+	dialog_comp.linecount = line_override
 	dialog_comp.timer.start()
 	dialog_comp.InputEnable = true
 	get_tree().paused = true
@@ -105,8 +112,9 @@ func _on_dialog_box_dialog_done() -> void:
 
 func quest_completer():
 	quest_completed = true
-	set_and_save(quest_item_needed.Tipo,quest_item_needed.Zona, quest_item_needed.Numero)
-	quest_item_needed.queue_free()
+	if quest_item_needed != null:
+		set_and_save(quest_item_needed.Tipo,quest_item_needed.Zona, quest_item_needed.Numero)
+		quest_item_needed.queue_free()
 
 
 func dialog_closer(dialog : DialogComponent , drop_item : bool):
@@ -118,7 +126,8 @@ func dialog_closer(dialog : DialogComponent , drop_item : bool):
 	dialog.linecount = 0
 	dialog.timer.stop()
 	if drop_item == true:
-		print("Drop CHICLE!!!!")
+		#Aqui llamar spawner
+		spawner_component.spawn_obj_comp(Zone, Number)
 
 
 func set_and_save(type : String, zone : int, num : int):

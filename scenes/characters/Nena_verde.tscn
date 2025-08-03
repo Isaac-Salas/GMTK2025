@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://pq4yyjb4oknv"]
+
+[ext_resource type="PackedScene" uid="uid://c5hki68aq0kpt" path="res://scenes/characters/personaje_proto.tscn" id="1_ij606"]
+[ext_resource type="Texture2D" uid="uid://di1rylpbau68w" path="res://assets/Aseprites/Niña verde.png" id="2_pimco"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dhvt3"]
+viewport_path = NodePath("Sprite/Prompt/SubViewport")
+
+[node name="Personaje_proto" instance=ExtResource("1_ij606")]
+character_name = "Little Girl"
+quest_completed = true
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_pimco")
+
+[node name="Prompt" parent="Sprite" index="0"]
+texture = SubResource("ViewportTexture_dhvt3")

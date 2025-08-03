@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://clpp612804f2t"]
 
 [ext_resource type="PackedScene" uid="uid://cpl3he238umye" path="res://scenes/objects/object_proto.tscn" id="1_2ruol"]
-[ext_resource type="Texture2D" uid="uid://cl8n2mni5gkek" path="res://assets/Aseprites/Ardilla de frente.png" id="2_2lfq0"]
+[ext_resource type="Texture2D" uid="uid://bp8e4iasyetwd" path="res://assets/Aseprites/Ardilla de frente.png" id="2_2lfq0"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_2lfq0"]
 viewport_path = NodePath("Sprite/Prompt/SubViewport")
 
-[node name="ObjectProto" instance=ExtResource("1_2ruol")]
+[node name="Ardilla" instance=ExtResource("1_2ruol")]
 
 [node name="Sprite" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.1, 0)

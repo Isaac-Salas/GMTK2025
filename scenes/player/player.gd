@@ -14,7 +14,7 @@ var input_direction : Vector2
 @export var chicles : int
 @export var reset_contadores : bool
 @export var duracion_timer : float = 2.0
-@export var todo_estado : Array[String]
+
 @export var overlays_on : bool = true
 @export var bilboard_sprite : bool = false
 @export var unlock_all_abilities : bool = false
@@ -22,6 +22,7 @@ var input_direction : Vector2
 @export var house_marker : Marker3D
 @export var race_marker : Marker3D
 @export var transition : TransitionComponent
+@export var music : MusicComponent
 
 @onready var days_left : int
 @onready var overlays: Control = $Overlays
@@ -171,7 +172,9 @@ func eval_moving ():
 			"Escalar":
 				MoveState.emit("Escalando")
 			"Agua":
-				pass
+				MoveState.emit("Nadando")
+			"Hoyo":
+				MoveState.emit("Volando")
 	
 
 
@@ -255,7 +258,6 @@ func day_pass():
 
 func go_to_race():
 	if race_marker != null and transition != null:
-		StartRace.emit(true)
 		transition.trans_inside_world()
 		await transition.animation_player.animation_finished
 		self.global_position = race_marker.global_position
@@ -263,6 +265,12 @@ func go_to_race():
 
 
 func start_race_mode():
+	if music != null:
+		music.fade(-80.0,1.0)
+		await music.fade_audio.finished
+		music.startplay(music.BURN_THE_WORLD_WALTZ_)
+		music.fade(-5.0, 1.0)
+	StartRace.emit(true)
 	race_mode = true
 	reset_day_counter(1)
 	contador_dias.clear()
@@ -275,6 +283,11 @@ func go_to_home():
 		StartRace.emit(false)
 		race_mode = false
 		transition.trans_inside_world()
+		if music != null:
+			music.fade(-80.0,1.0)
+			await music.fade_audio.finished
+			music.startplay(music.EVENING)
+			music.fade(-5.0, 1.0)
 		await transition.animation_player.animation_finished
 		self.global_position = house_marker.global_position
 		reset_day_counter()
@@ -314,7 +327,13 @@ func _on_move_state(state_name : String) -> void:
 				ardilla_animations.play("Ardilla_Run")
 		"Escalando":
 			sprite_animations.play("walking")
-			update_state_text("CLIMBING")
+			update_state_text("CLIMBING", "ffc384")
+			ardilla_animations.speed_scale = 1.0
+			if ardilla_comiendo == false:
+				ardilla_animations.play("Ardilla_Run")
+		"Nadando":
+			sprite_animations.play("walking")
+			update_state_text("SWIMING", "accce4")
 			ardilla_animations.speed_scale = 1.0
 			if ardilla_comiendo == false:
 				ardilla_animations.play("Ardilla_Run")
@@ -336,9 +355,9 @@ func ardilla_wait():
 func idle_ardilla_sprite():
 	ardilla.rotation_degrees = Vector3.ZERO
 
-func update_state_text(text:String):
+func update_state_text(text:String, color : String = "fff7e4"):
 	estado_display.clear()
-	estado_display.append_text("[center]" + text)
+	estado_display.append_text("[center][color=" + color+ "]" +text + "[/color]")
 
 func idle_sprite():
 	sprite.position = Vector3.ZERO

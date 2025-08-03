@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://thad1f2coe3q"]
+
+[ext_resource type="Script" uid="uid://dr6ks7a0awafq" path="res://scenes/obstacles/3D/3d_obstacle.gd" id="1_8wvka"]
+[ext_resource type="ArrayMesh" uid="uid://d16kshbar1h10" path="res://assets/3D/OBJ format/crate.obj" id="1_onkjj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8wvka"]
+
+[node name="3DObstacleProto" type="RigidBody3D"]
+collision_layer = 0
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_8wvka")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_8wvka")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.5, 0)
+mesh = ExtResource("1_onkjj")
+skeleton = NodePath("")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+aabb = AABB(-0.3, -0.3, -0.3, 0.6, 0.6, 0.6)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

@@ -2,6 +2,9 @@ extends AudioStreamPlayer
 class_name MusicComponent
 @export var songvolume : float = -5.0
 var fade_audio : Tween
+const BURN_THE_WORLD_WALTZ_ = preload("res://assets/Music/Burn The World Waltz .mp3")
+const EVENING = preload("res://assets/Music/Evening.mp3")
+const MORNING = preload("res://assets/Music/Morning.mp3")
 
 func _ready() -> void:
 	if stream != null:

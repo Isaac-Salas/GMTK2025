@@ -1,0 +1,116 @@
+[gd_scene load_steps=8 format=3 uid="uid://blku7ef3a025r"]
+
+[ext_resource type="PackedScene" uid="uid://c5hki68aq0kpt" path="res://scenes/characters/personaje_proto.tscn" id="1_rcjnj"]
+[ext_resource type="Texture2D" uid="uid://t33qmvhy5knh" path="res://assets/Aseprites/Cientifica.png" id="2_oh2n3"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rmf60"]
+viewport_path = NodePath("Sprite/Prompt/SubViewport")
+
+[sub_resource type="Animation" id="Animation_h17s1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_je7p5"]
+resource_name = "idle"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fm80t"]
+resource_name = "walking"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.2, 0), Vector3(0.5, 0.2, -0.25), Vector3(0, 0.2, 0), Vector3(-0.5, 0.2, -0.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(-1.5708, 0, -0.261799), Vector3(-1.5708, 0, 0), Vector3(-1.5708, 0, 0.261799)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q5onr"]
+_data = {
+&"RESET": SubResource("Animation_h17s1"),
+&"idle": SubResource("Animation_je7p5"),
+&"walking": SubResource("Animation_fm80t")
+}
+
+[node name="Dr_Kring" instance=ExtResource("1_rcjnj")]
+quest_end = PackedStringArray("YOU CAN DO IT SILMUS!!!!")
+character_name = "Dr. Kring"
+quest_item_in_hand = true
+quest_completed = true
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_oh2n3")
+
+[node name="Prompt" parent="Sprite" index="0"]
+texture = SubResource("ViewportTexture_rmf60")
+
+[node name="SpriteAnimations" parent="Sprite" index="1"]
+libraries = {
+&"AnimLibrary": SubResource("AnimationLibrary_q5onr")
+}

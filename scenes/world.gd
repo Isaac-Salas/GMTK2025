@@ -1,4 +1,6 @@
 extends Node3D
+@export var player : Player
+@export var silmus_nouse : Marker3D
 @export var debugging : bool = false
 
 func _input(event: InputEvent) -> void:

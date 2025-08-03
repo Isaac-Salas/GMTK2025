@@ -8,6 +8,7 @@ class_name DialogComponent
 @export var Quickypetime : float = 0
 
 @export var Dialog : PackedStringArray
+
 @onready var extraevent : bool = true
 @onready var animated_sprite_2d = $Control/AnimatedSprite2D
 @export var show_end : bool
@@ -54,7 +55,7 @@ func clearcenter():
 	InputEnable = false
 	dumbdone = false
 	self.clear()
-	self.append_text("[center][center]")
+	self.append_text("[center]")
 
 func _on_timer_timeout():
 	var textoide : String = Dialog[linecount]
@@ -64,6 +65,7 @@ func _on_timer_timeout():
 		audio_stream_player.pitch_scale = randf_range(1.0, 2.5)
 		audio_stream_player.play()
 		charcount += 1
+
 	if charcount == textoide.length():
 		if count < 1:
 			#print("done")
@@ -75,6 +77,7 @@ func _on_timer_timeout():
 			
 			if linecount == Dialog.size() - 1:
 				DialogDone.emit()
+				self.append_text("[/center]")
 				#print("CompletelyDOne")
 
 		

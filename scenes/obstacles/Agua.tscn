@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://blyau3f6gflnq"]
+
+[ext_resource type="PackedScene" uid="uid://cnvp2q56pjhvg" path="res://scenes/obstacles/riesgo_proto.tscn" id="1_qctd7"]
+[ext_resource type="ArrayMesh" uid="uid://fupslrxugpem" path="res://assets/3D/OBJ format/patch-sand.obj" id="2_isxdk"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qctd7"]
+viewport_path = NodePath("Meshes/Sprite3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_isxdk"]
+transparency = 1
+albedo_color = Color(0.67451, 0.8, 0.894118, 0.431373)
+
+[sub_resource type="Gradient" id="Gradient_ab3ei"]
+offsets = PackedFloat32Array(0, 0.3, 0.6, 1)
+colors = PackedColorArray(0.156863, 0.156863, 0.180392, 1, 0.423529, 0.337255, 0.513726, 1, 0.627451, 0.509804, 0.517647, 1, 1, 0.968627, 0.894118, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w7kh3"]
+gradient = SubResource("Gradient_ab3ei")
+
+[sub_resource type="Environment" id="Environment_7cpqw"]
+background_mode = 1
+background_color = Color(0.67451, 0.8, 0.894118, 1)
+fog_light_color = Color(0.22431, 0.246636, 0.281735, 1)
+volumetric_fog_density = 0.0
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_color_correction = SubResource("GradientTexture1D_w7kh3")
+
+[node name="Agua" instance=ExtResource("1_qctd7")]
+Tipo = "Agua"
+
+[node name="Sprite3D" type="Sprite3D" parent="Meshes" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.2, 0)
+pixel_size = 0.04
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = SubResource("ViewportTexture_qctd7")
+
+[node name="SubViewport" type="SubViewport" parent="Meshes/Sprite3D" index="0"]
+own_world_3d = true
+transparent_bg = true
+size = Vector2i(192, 192)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Meshes/Sprite3D/SubViewport" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -10.8148, 0)
+material_override = SubResource("StandardMaterial3D_isxdk")
+mesh = ExtResource("2_isxdk")
+skeleton = NodePath("../../..")
+
+[node name="Camera3D" type="Camera3D" parent="Meshes/Sprite3D/SubViewport" index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.8, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Meshes/Sprite3D/SubViewport" index="2"]
+environment = SubResource("Environment_7cpqw")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Meshes/Sprite3D/SubViewport" index="3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.62448, -5.97337, 0.233283)
+light_energy = 5.0
+spot_range = 44.17
+spot_attenuation = 0.98
+spot_angle = 180.0

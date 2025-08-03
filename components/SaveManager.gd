@@ -39,6 +39,7 @@ var Buff4_1: bool = false
 
 var Ardillas_TOTAL: int = 0
 var Chicles_TOTAL: int = 0
+var Tutorial_Completo : bool = false
 
 
 
@@ -91,7 +92,8 @@ func save():
 		
 		
 		"Ardillas_TOTAL" : Ardillas_TOTAL,
-		"Chicles_TOTAL" : Chicles_TOTAL
+		"Chicles_TOTAL" : Chicles_TOTAL,
+		"Tutorial_Completo" : Tutorial_Completo
 		
 		
 	}
