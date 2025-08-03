@@ -12,6 +12,8 @@ class_name KeyItemComponent
 @onready var prompt_sprite: Sprite3D = $Sprite/Prompt
 @onready var can_interact : bool 
 @onready var stick_to_player : bool
+@onready var move_component: MoveComponent = $MoveComponent
+
 
 signal CompleteQuest()
 signal Grabed(state : bool)
@@ -44,12 +46,14 @@ func  _input(event: InputEvent) -> void:
 func _on_grabed(state: bool) -> void:
 	match state:
 		true:
+			move_component.force_stop()
 			stick_to_player = true
 			prompt_text.clear()
 			prompt_text.append_text("[center]Drop?[/center]")
 			
 		false:
 			if player != null:
+				move_component.force_start()
 				self.global_position = player.global_position
 			stick_to_player = false
 			prompt_text.clear()

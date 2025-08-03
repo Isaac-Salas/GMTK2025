@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8esp8bo8rj1u"]
+[gd_scene load_steps=8 format=3 uid="uid://b8esp8bo8rj1u"]
 
 [ext_resource type="Script" uid="uid://2uouuidbj1pp" path="res://components/key_item_proto.gd" id="1_oc3wi"]
 [ext_resource type="Texture2D" uid="uid://b5i5q0jgecfvf" path="res://assets/Aseprites/Chicle.png" id="2_bvqtf"]
 [ext_resource type="FontFile" uid="uid://ojhacg2t03ld" path="res://assets/fonts/geometry-soft-pro/Geometry_Soft_Pro-Bold_N.otf" id="3_edybm"]
+[ext_resource type="PackedScene" uid="uid://jg03u502ldhj" path="res://scenes/animations/sprite_animations.tscn" id="4_edybm"]
+[ext_resource type="PackedScene" uid="uid://wa47ch1e726p" path="res://components/move_component.tscn" id="5_ptufi"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lakw3"]
 radius = 3.0
@@ -21,7 +23,7 @@ Numero = 1
 shape = SubResource("SphereShape3D_lakw3")
 
 [node name="Sprite" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.1, 0)
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 0.2, 0)
 pixel_size = 0.04
 shaded = true
 alpha_cut = 1
@@ -52,6 +54,12 @@ bbcode_enabled = true
 text = "[center]Interact?[/center]"
 fit_content = true
 scroll_active = false
+
+[node name="SpriteAnimations" parent="Sprite" instance=ExtResource("4_edybm")]
+
+[node name="MoveComponent" parent="." node_paths=PackedStringArray("target", "sprite_animations") instance=ExtResource("5_ptufi")]
+target = NodePath("..")
+sprite_animations = NodePath("../Sprite/SpriteAnimations")
 
 [connection signal="Grabed" from="." to="." method="_on_grabed"]
 [connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detect_body_entered"]

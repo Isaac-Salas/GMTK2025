@@ -1,6 +1,7 @@
 extends Node3D
 class_name MoveComponent
 @export var active : bool = true
+@export var humanlike : bool = true
 @export var target : Node3D
 @export var time_to_move : float = 2.0
 @export var tween_time : float = 1.0
@@ -24,8 +25,16 @@ func animate_moving(target : Node3D, time: float = 1.0, range_om : float = 5.0):
 
 func _on_timer_timeout() -> void:
 	animate_moving(target, tween_time, movement_range)
-	sprite_animations.play("AnimLibrary/walking")
+	if humanlike == true:
+		sprite_animations.play("AnimLibrary/walking")
 
+func force_start():
+	active = true
+	move_timer.start(time_to_move)
+
+func force_stop():
+	active = false
+	move_timer.stop()
 
 func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
 	if active == true:
