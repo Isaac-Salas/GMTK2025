@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://nom0qoojrwe6"]
+
+[ext_resource type="PackedScene" uid="uid://b8esp8bo8rj1u" path="res://components/key_item_proto.tscn" id="1_1wpw8"]
+[ext_resource type="Texture2D" uid="uid://c7trptak74xcx" path="res://assets/Objetos/Refresco.png" id="2_1wpw8"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_c3aag"]
+viewport_path = NodePath("Sprite/Prompt/SubViewport")
+
+[node name="KeyItemProto" instance=ExtResource("1_1wpw8")]
+Zona = 3
+Numero = 2
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("2_1wpw8")
+
+[node name="Prompt" parent="Sprite" index="0"]
+texture = SubResource("ViewportTexture_c3aag")
+
+[node name="MoveComponent" parent="." index="2"]
+active = false
+humanlike = false

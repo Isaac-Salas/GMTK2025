@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://ddlyq4ertop1w" path="res://components/transition_component.tscn" id="12_el213"]
 [ext_resource type="PackedScene" uid="uid://cim5ukairdcvq" path="res://scenes/world.tscn" id="13_thu7x"]
 [ext_resource type="PackedScene" uid="uid://57gf4vc0lkv8" path="res://components/audio_manager.tscn" id="19_7t7qg"]
-[ext_resource type="AudioStream" uid="uid://ko4i2a80wgqd" path="res://assets/Music/Morning.mp3" id="19_l3wcu"]
+[ext_resource type="AudioStream" uid="uid://dyru0ohpw4hdh" path="res://assets/Music/Blippy Trance.mp3" id="20_l3wcu"]
 
 [sub_resource type="Gradient" id="Gradient_o0tnf"]
 offsets = PackedFloat32Array(0, 0.3, 0.6, 1)
@@ -700,7 +700,7 @@ next_scene = ExtResource("13_thu7x")
 audio = NodePath("../AudioManager")
 
 [node name="AudioManager" parent="." instance=ExtResource("19_7t7qg")]
-stream = ExtResource("19_l3wcu")
+stream = ExtResource("20_l3wcu")
 
 [connection signal="InteractedMenu" from="Personaje_proto" to="." method="_on_personaje_proto_interacted_menu"]
 [connection signal="body_entered" from="Personaje_proto/PlayerDetect" to="Personaje_proto" method="_on_player_detect_body_entered"]

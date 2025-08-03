@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://clcjct7tclpmj"]
+
+[ext_resource type="PackedScene" uid="uid://c5hki68aq0kpt" path="res://scenes/characters/personaje_proto.tscn" id="1_jffdp"]
+[ext_resource type="Texture2D" uid="uid://bsu25afj8q28i" path="res://assets/Aseprites/Niña rosa.png" id="2_jffdp"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v0lqx"]
+viewport_path = NodePath("Sprite/Prompt/SubViewport")
+
+[node name="Personaje_proto" instance=ExtResource("1_jffdp")]
+normal_dialog = PackedStringArray("Hello mister...", "Can you help me find my turtle?", "I would really apreciate it!")
+quest_end = PackedStringArray("Thanks a lot mister")
+character_name = "Little Girl"
+Zone = 3
+Number = 1
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_jffdp")
+
+[node name="Prompt" parent="Sprite" index="0"]
+texture = SubResource("ViewportTexture_v0lqx")

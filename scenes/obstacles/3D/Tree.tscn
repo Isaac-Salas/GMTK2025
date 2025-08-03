@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmvcpnf3y5rbm"]
+
+[ext_resource type="PackedScene" uid="uid://thad1f2coe3q" path="res://scenes/obstacles/3D/3DObstacle.tscn" id="1_5cbqu"]
+[ext_resource type="ArrayMesh" uid="uid://71r0asd0ihd3" path="res://assets/3D/OBJ format/tree.obj" id="2_m21kr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_txvvb"]
+size = Vector3(0.6, 1, 0.6)
+
+[node name="3DObstacleProto" instance=ExtResource("1_5cbqu")]
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00585938, 0, 0)
+shape = SubResource("BoxShape3D_txvvb")
+
+[node name="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -0.5, 0)
+mesh = ExtResource("2_m21kr")

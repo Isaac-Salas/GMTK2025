@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://t5xba4vx6pad"]
+
+[ext_resource type="PackedScene" uid="uid://thad1f2coe3q" path="res://scenes/obstacles/3D/3DObstacle.tscn" id="1_j0h0a"]
+[ext_resource type="ArrayMesh" uid="uid://db1d8oq5tc81g" path="res://assets/3D/OBJ format/cannon-ball.obj" id="2_28446"]
+
+[node name="3DObstacleProto" instance=ExtResource("1_j0h0a")]
+
+[node name="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.00581929, 0)
+mesh = ExtResource("2_28446")

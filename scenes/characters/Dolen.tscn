@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dney2mhmmpn4f"]
+
+[ext_resource type="PackedScene" uid="uid://c5hki68aq0kpt" path="res://scenes/characters/personaje_proto.tscn" id="1_eldex"]
+[ext_resource type="Texture2D" uid="uid://d0c1l7xngjxsw" path="res://assets/Aseprites/Robot aereo nuevo.png" id="2_eldex"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_x8vrl"]
+viewport_path = NodePath("Sprite/Prompt/SubViewport")
+
+[node name="Personaje_proto" instance=ExtResource("1_eldex")]
+normal_dialog = PackedStringArray("Hey dude, whats up!", "Cant wait for the next race.", "You should come over some time :)", "We can train together and play games!")
+character_name = "Dolen"
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_eldex")
+
+[node name="Prompt" parent="Sprite" index="0"]
+texture = SubResource("ViewportTexture_x8vrl")

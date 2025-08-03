@@ -2,7 +2,7 @@ extends Node3D
 class_name ObjectComponent
 const OUTLINE = preload("res://shaders/outline.gdshader")
 
-@export_enum("Ardilla", "Chicle", "Buff") var Tipo : String = "Ardilla"
+@export_enum("Habilidad", "Ardilla", "Chicle", "Buff") var Tipo : String = "Ardilla"
 @onready var player : Player
 @export var Zona : int
 @export var Numero : int

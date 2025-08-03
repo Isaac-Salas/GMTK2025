@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk5tfco7n0bwl"]
+
+[ext_resource type="PackedScene" uid="uid://b8esp8bo8rj1u" path="res://components/key_item_proto.tscn" id="1_4vsbi"]
+[ext_resource type="Texture2D" uid="uid://cqej1e3bpri82" path="res://assets/Objetos/Tortuga.png" id="2_4vsbi"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_c3aag"]
+viewport_path = NodePath("Sprite/Prompt/SubViewport")
+
+[node name="KeyItemProto" instance=ExtResource("1_4vsbi")]
+Zona = 2
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("2_4vsbi")
+
+[node name="Prompt" parent="Sprite" index="0"]
+texture = SubResource("ViewportTexture_c3aag")

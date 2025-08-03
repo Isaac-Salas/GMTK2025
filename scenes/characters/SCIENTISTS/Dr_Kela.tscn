@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1pjngd88je7e"]
+
+[ext_resource type="PackedScene" uid="uid://c5hki68aq0kpt" path="res://scenes/characters/personaje_proto.tscn" id="1_jv6ns"]
+[ext_resource type="Texture2D" uid="uid://bt47orwk8woq5" path="res://assets/Aseprites/Cientifica mariposa.png" id="2_e435x"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tt0r7"]
+viewport_path = NodePath("Sprite/Prompt/SubViewport")
+
+[node name="Personaje_proto" instance=ExtResource("1_jv6ns")]
+normal_dialog = PackedStringArray("Hey Silmus, good to see you!", "I saw you running the race the other day.", "You got potential little Sirk...", "Say, why dont  you go and check if the people here need your help?", "If you help everyone, I\'ll make it worth your while!")
+quest_end = PackedStringArray("Thanks for helping Sirk.", "Told you I would make it worth your while")
+character_name = "Dr. Kela"
+scientist = true
+Zone = 4
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_e435x")
+
+[node name="Prompt" parent="Sprite" index="0"]
+texture = SubResource("ViewportTexture_tt0r7")

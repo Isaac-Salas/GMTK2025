@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0j4cvja3tvxg"]
+
+[ext_resource type="PackedScene" uid="uid://c5hki68aq0kpt" path="res://scenes/characters/personaje_proto.tscn" id="1_7pgue"]
+[ext_resource type="Texture2D" uid="uid://d1hmyq4yhqeft" path="res://assets/Aseprites/Niño rosa.png" id="2_7pgue"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v0lqx"]
+viewport_path = NodePath("Sprite/Prompt/SubViewport")
+
+[node name="Personaje_proto" instance=ExtResource("1_7pgue")]
+normal_dialog = PackedStringArray("Hello Mister!", "I think I lost my pet rock...", "Would be sweet if you could find it!")
+quest_end = PackedStringArray("SWEEEEEET!!!")
+character_name = "Little Boy"
+Zone = 2
+Number = 2
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_7pgue")
+
+[node name="Prompt" parent="Sprite" index="0"]
+texture = SubResource("ViewportTexture_v0lqx")

@@ -4,6 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://d16kshbar1h10" path="res://assets/3D/OBJ format/crate.obj" id="1_onkjj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8wvka"]
+size = Vector3(1.01172, 1, 1)
 
 [node name="3DObstacleProto" type="RigidBody3D"]
 collision_layer = 0

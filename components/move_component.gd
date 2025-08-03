@@ -39,6 +39,7 @@ func force_stop():
 func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
 	if active == true:
 		move_timer.start(time_to_move)
+		pass
 
 
 func _on_visible_on_screen_notifier_3d_screen_exited() -> void:

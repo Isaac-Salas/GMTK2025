@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://u4cdq4iqwb6a"]
+
+[ext_resource type="PackedScene" uid="uid://c5hki68aq0kpt" path="res://scenes/characters/personaje_proto.tscn" id="1_ar71g"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_x8vrl"]
+viewport_path = NodePath("Sprite/Prompt/SubViewport")
+
+[node name="Personaje_proto" instance=ExtResource("1_ar71g")]
+normal_dialog = PackedStringArray("Hey dude, whats up!", "Cant wait for the next race.", "You should come over some time :)", "We can train together and play games!")
+character_name = "Garang "
+
+[node name="Prompt" parent="Sprite" index="0"]
+texture = SubResource("ViewportTexture_x8vrl")

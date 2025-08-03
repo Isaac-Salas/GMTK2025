@@ -74,13 +74,15 @@ func scientist_lookup(zone : int):
 			NewArray.append(value)
 	return NewArray
 
-func check_array(array : Array[bool], expected_truth : int):
+func check_array(array : Array, expected_truth : int):
 	var count = 0
 	for value in array:
 		if value == true:
 			count += 1
 	if count == expected_truth:
 		return true
+	else:
+		return false
 
 
 func grab_toggle(state : bool):

@@ -6,6 +6,7 @@ extends Node3D
 @onready var segunda_parte: DialogComponent = $UI/SegundaParte
 @onready var ui: Control = $UI
 @onready var dr_kring: PersonajeComponent = $"../Personajes/Dr_Kring"
+
 @export var doctor_spot :Marker3D
 
 # Called when the node enters the scene tree for the first time.

@@ -11,4 +11,9 @@ script = ExtResource("1_uey32")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_jhx03")
 
-[node name="Meshes" type="Node3D" parent="."]
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.2, 0)
+pixel_size = 0.04
+shaded = true
+alpha_cut = 1
+texture_filter = 0

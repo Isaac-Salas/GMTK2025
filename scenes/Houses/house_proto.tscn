@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkusjywxcsi4e"]
+
+[ext_resource type="Texture2D" uid="uid://dqmbhrest7h00" path="res://assets/Aseprites/TABLET/Casa gato.png" id="1_yso47"]
+
+[node name="HouseProto" type="Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.15, 0)
+pixel_size = 0.04
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_yso47")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://cim5ukairdcvq"]
+[gd_scene load_steps=82 format=3 uid="uid://cim5ukairdcvq"]
 
 [ext_resource type="Texture2D" uid="uid://boh8i64e6ower" path="res://assets/Mundo/Mundo.png" id="1_4wyf3"]
 [ext_resource type="Script" uid="uid://n6gujomtfngi" path="res://scenes/world.gd" id="1_qfnet"]
@@ -17,17 +17,48 @@
 [ext_resource type="PackedScene" uid="uid://cwjkocn4pmcgw" path="res://scenes/obstacles/Hoyo.tscn" id="10_dss4m"]
 [ext_resource type="PackedScene" uid="uid://ddlyq4ertop1w" path="res://components/transition_component.tscn" id="11_e3hyu"]
 [ext_resource type="PackedScene" uid="uid://57gf4vc0lkv8" path="res://components/audio_manager.tscn" id="12_jhx03"]
-[ext_resource type="AudioStream" uid="uid://odk150h5we1o" path="res://assets/Music/Evening.mp3" id="13_o8fc1"]
 [ext_resource type="Script" uid="uid://swirjnlfh6ki" path="res://scenes/day_animations.gd" id="15_xo05s"]
-[ext_resource type="PackedScene" uid="uid://c5hki68aq0kpt" path="res://scenes/characters/personaje_proto.tscn" id="17_0nbtd"]
-[ext_resource type="PackedScene" uid="uid://blku7ef3a025r" path="res://scenes/characters/dr_kring.tscn" id="19_ctatt"]
+[ext_resource type="PackedScene" uid="uid://u4cdq4iqwb6a" path="res://scenes/characters/Garang.tscn" id="16_luhhm"]
+[ext_resource type="PackedScene" uid="uid://bmcv3wweqwm1u" path="res://scenes/characters/Buklo.tscn" id="17_fh13f"]
+[ext_resource type="PackedScene" uid="uid://d1pjngd88je7e" path="res://scenes/characters/SCIENTISTS/Dr_Kela.tscn" id="17_navra"]
+[ext_resource type="PackedScene" uid="uid://colngmt12c05" path="res://scenes/characters/SCIENTISTS/Dr_Obvod.tscn" id="18_luhhm"]
+[ext_resource type="PackedScene" uid="uid://dney2mhmmpn4f" path="res://scenes/characters/Dolen.tscn" id="18_rup4s"]
+[ext_resource type="PackedScene" uid="uid://ct5bip33c4b2b" path="res://scenes/characters/QuestGivers/nena1.tscn" id="19_eo1xk"]
+[ext_resource type="PackedScene" uid="uid://bknapsdxktt3h" path="res://scenes/characters/SCIENTISTS/Dr_Qark.tscn" id="19_fh13f"]
+[ext_resource type="PackedScene" uid="uid://bm6rj8cqstpcp" path="res://scenes/characters/QuestGivers/nena2.tscn" id="20_d46x8"]
+[ext_resource type="PackedScene" uid="uid://dkusjywxcsi4e" path="res://scenes/Houses/house_proto.tscn" id="20_fh13f"]
+[ext_resource type="PackedScene" uid="uid://dyqjn8sb8jqbv" path="res://scenes/characters/QuestGivers/nena3.tscn" id="21_3l05q"]
 [ext_resource type="Script" uid="uid://dfruey5ap2pxi" path="res://scenes/race_mode_manager.gd" id="21_7iits"]
 [ext_resource type="Script" uid="uid://dant3t764qls6" path="res://scenes/racer_comp.gd" id="22_ctatt"]
 [ext_resource type="Texture2D" uid="uid://bywqe8vpb6s5c" path="res://assets/Aseprites/Robot tierroso.png" id="22_kpybi"]
+[ext_resource type="PackedScene" uid="uid://clcjct7tclpmj" path="res://scenes/characters/QuestGivers/nena4.tscn" id="22_x28ej"]
+[ext_resource type="PackedScene" uid="uid://c7owka2epy6jh" path="res://scenes/characters/QuestGivers/nene1.tscn" id="23_1dgkn"]
+[ext_resource type="PackedScene" uid="uid://se6g34bnespn" path="res://scenes/Houses/Dr_Agua.tscn" id="23_4kbfs"]
+[ext_resource type="PackedScene" uid="uid://c2e60ytws8vua" path="res://scenes/objects/KeyItems/globo.tscn" id="23_18clu"]
 [ext_resource type="PackedScene" uid="uid://jg03u502ldhj" path="res://scenes/animations/sprite_animations.tscn" id="23_ctatt"]
 [ext_resource type="Texture2D" uid="uid://cx8b1jojaymtb" path="res://assets/Aseprites/Robot marino.png" id="23_munwf"]
+[ext_resource type="PackedScene" uid="uid://oekd7xng8e2p" path="res://scenes/objects/KeyItems/gorra.tscn" id="24_4wdv8"]
+[ext_resource type="PackedScene" uid="uid://bjuqcn3yoqibw" path="res://scenes/characters/QuestGivers/nene2.tscn" id="24_e68xj"]
+[ext_resource type="PackedScene" uid="uid://b73lxi0mndydd" path="res://scenes/Houses/Dr_Aire.tscn" id="24_f17e3"]
+[ext_resource type="PackedScene" uid="uid://6djlifc2ab7g" path="res://scenes/characters/QuestGivers/nene3.tscn" id="25_5hglh"]
+[ext_resource type="PackedScene" uid="uid://dof5evxv8vdry" path="res://scenes/objects/KeyItems/mascota_piedra.tscn" id="25_d46x8"]
+[ext_resource type="AudioStream" uid="uid://cc7ib8q7bc3r4" path="res://assets/Music/Beauty Flow.mp3" id="25_rup4s"]
 [ext_resource type="Texture2D" uid="uid://d0c1l7xngjxsw" path="res://assets/Aseprites/Robot aereo nuevo.png" id="25_ts3gi"]
+[ext_resource type="PackedScene" uid="uid://chy60rk6lputq" path="res://scenes/Houses/Dr_Mio.tscn" id="25_x2olw"]
+[ext_resource type="PackedScene" uid="uid://d3dp4mwkndxrh" path="res://scenes/objects/KeyItems/pelota.tscn" id="26_3l05q"]
+[ext_resource type="PackedScene" uid="uid://d0j4cvja3tvxg" path="res://scenes/characters/QuestGivers/nene4.tscn" id="26_qg546"]
+[ext_resource type="PackedScene" uid="uid://c3ve0lytiysg0" path="res://scenes/objects/KeyItems/perrit.tscn" id="27_x28ej"]
 [ext_resource type="PackedScene" uid="uid://btjahidcpij0l" path="res://components/3dTimedSpawn.tscn" id="28_0nbtd"]
+[ext_resource type="PackedScene" uid="uid://b0uslxta2ko3q" path="res://scenes/objects/KeyItems/pogo.tscn" id="28_1jxku"]
+[ext_resource type="PackedScene" uid="uid://nom0qoojrwe6" path="res://scenes/objects/KeyItems/refresco.tscn" id="29_1dgkn"]
+[ext_resource type="PackedScene" uid="uid://bk5tfco7n0bwl" path="res://scenes/objects/KeyItems/tortuga.tscn" id="30_e68xj"]
+[ext_resource type="PackedScene" uid="uid://vwrsxh46q50u" path="res://scenes/characters/SCIENTISTS/Dr_Kring.tscn" id="30_iexy4"]
+[ext_resource type="PackedScene" uid="uid://t1sj8b1sm3mo" path="res://scenes/Houses/Green.tscn" id="42_qg546"]
+[ext_resource type="PackedScene" uid="uid://ca6q3c84b8c5n" path="res://scenes/Houses/Red.tscn" id="43_pf35h"]
+[ext_resource type="PackedScene" uid="uid://bcylky58cyg28" path="res://scenes/Houses/Blue.tscn" id="44_iexy4"]
+[ext_resource type="PackedScene" uid="uid://dlpwfg2352fll" path="res://scenes/Houses/Purple.tscn" id="45_pf35h"]
+[ext_resource type="Script" uid="uid://cekw6v58b26ho" path="res://scenes/win!!!.gd" id="58_npbic"]
+[ext_resource type="FontFile" uid="uid://ojhacg2t03ld" path="res://assets/fonts/geometry-soft-pro/Geometry_Soft_Pro-Bold_N.otf" id="59_e6ckp"]
 
 [sub_resource type="Gradient" id="Gradient_i7141"]
 offsets = PackedFloat32Array(0, 0.3, 0.6, 1)
@@ -72,7 +103,7 @@ size = Vector2(200, 200)
 size = Vector3(76.4, 10, 76.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dss4m"]
-size = Vector3(1, 8, 11.91)
+size = Vector3(4.68335, 8, 11.91)
 
 [sub_resource type="Animation" id="Animation_o8fc1"]
 resource_name = "Night&Day"
@@ -226,6 +257,43 @@ _data = {
 point_count = 29
 up_vector_enabled = false
 
+[sub_resource type="Animation" id="Animation_mvg0v"]
+resource_name = "WIN!!!"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.7, 1, 1.2, 1.5, 1.7, 1.9, 2.13),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h3odw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5hl1e"]
+_data = {
+&"RESET": SubResource("Animation_h3odw"),
+&"WIN!!!": SubResource("Animation_mvg0v")
+}
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_qfnet")
 debugging = true
@@ -235,6 +303,7 @@ environment = SubResource("Environment_qfnet")
 
 [node name="NewTutorialComponent" type="Node3D" parent="." node_paths=PackedStringArray("player", "player_tuto_spot")]
 script = ExtResource("2_lakw3")
+active = null
 player = NodePath("../Player")
 player_tuto_spot = NodePath("../Marcadores/SilmusHouse")
 
@@ -280,11 +349,10 @@ Timerstart = false
 Dialog = PackedStringArray()
 
 [node name="Player" parent="." node_paths=PackedStringArray("house_marker", "race_marker", "transition", "music") instance=ExtResource("2_qfnet")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.237, 0.5, 33.2014)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.237, 0.5, 27.2014)
 override = true
 ardillas = 1
 chicles = 1
-days_to_explore = 1
 house_marker = NodePath("../Marcadores/SilmusHouse")
 race_marker = NodePath("../Marcadores/RaceStart")
 transition = NodePath("../TransitionComponent")
@@ -330,6 +398,7 @@ shape = SubResource("BoxShape3D_jhx03")
 [node name="GoalBarrier" type="StaticBody3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, -5, 43)
 script = ExtResource("8_7t5mc")
+override = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/GoalBarrier"]
 shape = SubResource("BoxShape3D_dss4m")
@@ -338,104 +407,271 @@ shape = SubResource("BoxShape3D_dss4m")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.29868, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/GoalBarrier/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.84534, 0, 0)
 shape = SubResource("BoxShape3D_dss4m")
 
 [node name="Riesgos" type="Node3D" parent="."]
 
-[node name="Piedra" parent="Riesgos" instance=ExtResource("8_dss4m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.1901, 0, 31.0796)
-
-[node name="Piedra5" parent="Riesgos" instance=ExtResource("8_dss4m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.5781, 0, 15.2622)
-
-[node name="Piedra6" parent="Riesgos" instance=ExtResource("8_dss4m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9735, 0, 15.2622)
-
-[node name="Piedra7" parent="Riesgos" instance=ExtResource("8_dss4m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0730891, 0, 15.2622)
-
-[node name="Piedra8" parent="Riesgos" instance=ExtResource("8_dss4m")]
-transform = Transform3D(-0.343496, 0, -0.939154, 0, 1, 0, 0.939154, 0, -0.343496, -0.0730891, 0, 24.1474)
-
-[node name="Piedra10" parent="Riesgos" instance=ExtResource("8_dss4m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0730891, 0, 32.4222)
-
-[node name="Piedra2" parent="Riesgos" instance=ExtResource("8_dss4m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.1901, 0, 31.0796)
-
-[node name="Piedra3" parent="Riesgos" instance=ExtResource("8_dss4m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.1901, 0, 23.5301)
-
-[node name="Piedra4" parent="Riesgos" instance=ExtResource("8_dss4m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.444, 0, 23.5301)
-
-[node name="Agua" parent="Riesgos" instance=ExtResource("9_xo05s")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19.9669, 0, -10)
-
-[node name="Agua2" parent="Riesgos" instance=ExtResource("9_xo05s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6727, 0, -10)
-
-[node name="Agua3" parent="Riesgos" instance=ExtResource("9_xo05s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.4409, 0, -10)
-
-[node name="Agua4" parent="Riesgos" instance=ExtResource("9_xo05s")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 27.4409, 0, -16.362)
-
-[node name="Agua5" parent="Riesgos" instance=ExtResource("9_xo05s")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 27.4409, 0, -23.9266)
-
-[node name="Agua6" parent="Riesgos" instance=ExtResource("9_xo05s")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 20.4409, 0, -23.9266)
-
-[node name="Agua7" parent="Riesgos" instance=ExtResource("9_xo05s")]
-transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 12.4409, 0, -23.9266)
-
-[node name="Agua8" parent="Riesgos" instance=ExtResource("9_xo05s")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 12.4409, 0, -16.9266)
-
 [node name="Hoyo" parent="Riesgos" instance=ExtResource("10_dss4m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0778, 0, -0.879007)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.401, 0, 0)
 
 [node name="Hoyo2" parent="Riesgos" instance=ExtResource("10_dss4m")]
-transform = Transform3D(0.448274, 0, 0.893896, 0, 1, 0, -0.893896, 0, 0.448274, -14.1182, 0, -0.879007)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.5306, 0, 0)
+
+[node name="Hoyo4" parent="Riesgos" instance=ExtResource("10_dss4m")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18.6348, 0, -44)
+
+[node name="Hoyo5" parent="Riesgos" instance=ExtResource("10_dss4m")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.63483, 0, 4)
 
 [node name="Hoyo3" parent="Riesgos" instance=ExtResource("10_dss4m")]
-transform = Transform3D(0.448274, 0, 0.893896, 0, 1, 0, -0.893896, 0, 0.448274, -17.9944, 0, -6.38922)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -43.2107, 0, 0)
+
+[node name="Hoyo6" parent="Riesgos" instance=ExtResource("10_dss4m")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -33.4145, 0, -33.6686)
+
+[node name="Hoyo7" parent="Riesgos" instance=ExtResource("10_dss4m")]
+transform = Transform3D(1, 4.37114e-08, 0, -4.37114e-08, 1, 4.37114e-08, 3.55271e-15, -4.37114e-08, 1, -43.4145, 0, -33.6686)
+
+[node name="Hoyo8" parent="Riesgos" instance=ExtResource("10_dss4m")]
+transform = Transform3D(1, 4.37114e-08, 0, -4.37114e-08, 1, 4.37114e-08, 3.55271e-15, -4.37114e-08, 1, -14.4145, 0, -33.6686)
+
+[node name="Hoyo9" parent="Riesgos" instance=ExtResource("10_dss4m")]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, 1, -4.37114e-08, 1, 4.37114e-08, -1, -4.37114e-08, -4.37114e-08, -4.83384, 0, -24.1892)
+
+[node name="Piedra" parent="Riesgos" instance=ExtResource("8_dss4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11)
+
+[node name="Piedra2" parent="Riesgos" instance=ExtResource("8_dss4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.9891)
+
+[node name="Piedra3" parent="Riesgos" instance=ExtResource("8_dss4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 34.9891)
+
+[node name="Piedra4" parent="Riesgos" instance=ExtResource("8_dss4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 42.9891)
+
+[node name="Piedra5" parent="Riesgos" instance=ExtResource("8_dss4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.125, 0, 32.9891)
+
+[node name="Piedra6" parent="Riesgos" instance=ExtResource("8_dss4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.3496, 0, 32.9891)
+
+[node name="Piedra7" parent="Riesgos" instance=ExtResource("8_dss4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7023, 0, 42.7762)
+
+[node name="Piedra8" parent="Riesgos" instance=ExtResource("8_dss4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.8564, 0, 5.10372)
+
+[node name="Agua" parent="Riesgos" instance=ExtResource("9_xo05s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.8466, 0, 0)
+
+[node name="Agua2" parent="Riesgos" instance=ExtResource("9_xo05s")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.7787, 0, 0)
+
+[node name="Agua3" parent="Riesgos" instance=ExtResource("9_xo05s")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 33.6564, 0, -23.699)
+
+[node name="Agua4" parent="Riesgos" instance=ExtResource("9_xo05s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.4258, 0, -23.699)
+
+[node name="Agua5" parent="Riesgos" instance=ExtResource("9_xo05s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2274, 0, -23.699)
+
+[node name="Agua6" parent="Riesgos" instance=ExtResource("9_xo05s")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.62137, 0, -14.1881)
+
+[node name="Agua7" parent="Riesgos" instance=ExtResource("9_xo05s")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24.1256, 0, -14.1881)
+
+[node name="Agua8" parent="Riesgos" instance=ExtResource("9_xo05s")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24.1256, 0, -43.1881)
+
+[node name="Agua9" parent="Riesgos" instance=ExtResource("9_xo05s")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.6173, 0, -43.1881)
 
 [node name="Objetos" type="Node3D" parent="."]
 
+[node name="Ardilla4" parent="Objetos" instance=ExtResource("7_w7kh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.281, 0, 24.3196)
+Zona = 1
+Numero = 1
+
+[node name="Ardilla5" parent="Objetos" instance=ExtResource("7_w7kh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.9306, 0, 5.90364)
+Zona = 1
+Numero = 2
+
+[node name="Ardilla6" parent="Objetos" instance=ExtResource("7_w7kh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.9396, 0, 33.2597)
+Zona = 1
+Numero = 3
+
 [node name="Ardilla" parent="Objetos" instance=ExtResource("7_w7kh3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.719, 0, 27.3196)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5696, 0, 4.65956)
+Zona = 2
+Numero = 2
+
+[node name="Ardilla8" parent="Objetos" instance=ExtResource("7_w7kh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2517, 0, 5.65956)
+Zona = 2
+Numero = 3
+
+[node name="Ardilla7" parent="Objetos" instance=ExtResource("7_w7kh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.806, 0, 33.794)
 Zona = 2
 Numero = 1
 
 [node name="Ardilla2" parent="Objetos" instance=ExtResource("7_w7kh3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7402, 0, -16.9263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.3948, 0, -24.2497)
 Zona = 3
 Numero = 1
+
+[node name="Ardilla9" parent="Objetos" instance=ExtResource("7_w7kh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.84787, 0, -43.5808)
+Zona = 3
+Numero = 2
+
+[node name="Ardilla10" parent="Objetos" instance=ExtResource("7_w7kh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4151, 0, -43.5808)
+Zona = 3
+Numero = 3
 
 [node name="Ardilla3" parent="Objetos" instance=ExtResource("7_w7kh3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7621, 0, -26.3735)
 Zona = 4
 Numero = 1
 
+[node name="Ardilla11" parent="Objetos" instance=ExtResource("7_w7kh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.2852, 0, -2.028)
+Zona = 4
+Numero = 2
+
+[node name="Ardilla12" parent="Objetos" instance=ExtResource("7_w7kh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.5503, 0, -34.3588)
+Zona = 4
+Numero = 2
+
 [node name="Personajes" type="Node3D" parent="."]
 
-[node name="Dr_Kring" parent="Personajes" instance=ExtResource("19_ctatt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, 25)
-quest_completed = false
+[node name="Garang" parent="Personajes" instance=ExtResource("16_luhhm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 18.0082)
 
-[node name="Dr_Kring2" parent="Personajes" instance=ExtResource("19_ctatt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.1728, 0, 25)
-quest_completed = false
+[node name="Buklo" parent="Personajes" instance=ExtResource("17_fh13f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.94215, 0, -10.9033)
+
+[node name="Personaje_proto" parent="Personajes" instance=ExtResource("18_rup4s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0624, 0, -18.9964)
+
+[node name="Niña1" parent="Personajes" node_paths=PackedStringArray("quest_item_needed") instance=ExtResource("19_eo1xk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 34)
+quest_item_needed = NodePath("../../ObjetosClave/Perrito")
+
+[node name="Nena2" parent="Personajes" node_paths=PackedStringArray("quest_item_needed") instance=ExtResource("20_d46x8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1228, 0, -13.8897)
+quest_item_needed = NodePath("../../ObjetosClave/Globo")
+
+[node name="Nena3" parent="Personajes" node_paths=PackedStringArray("quest_item_needed") instance=ExtResource("21_3l05q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0113, 0, -4.62003)
+quest_item_needed = NodePath("../../ObjetosClave/Pelota")
+
+[node name="Nena4" parent="Personajes" node_paths=PackedStringArray("quest_item_needed") instance=ExtResource("22_x28ej")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.84979, 0, 4.70922)
+quest_item_needed = NodePath("../../ObjetosClave/Tortuga")
+
+[node name="Personaje_proto2" parent="Personajes" node_paths=PackedStringArray("quest_item_needed") instance=ExtResource("23_1dgkn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0002, 0, -3.76617)
+quest_item_needed = NodePath("../../ObjetosClave/Gorra")
+
+[node name="Personaje_proto3" parent="Personajes" node_paths=PackedStringArray("quest_item_needed") instance=ExtResource("24_e68xj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9557, 0, -14.5819)
+quest_item_needed = NodePath("../../ObjetosClave/Refresco")
+
+[node name="Personaje_proto4" parent="Personajes" node_paths=PackedStringArray("quest_item_needed") instance=ExtResource("25_5hglh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.6196, 0, 14.6723)
+quest_item_needed = NodePath("../../ObjetosClave/Pogo")
+
+[node name="Personaje_proto5" parent="Personajes" node_paths=PackedStringArray("quest_item_needed") instance=ExtResource("26_qg546")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2109, 0, 25.1665)
+quest_item_needed = NodePath("../../ObjetosClave/Piedrita")
 
 [node name="Scientificos" type="Node3D" parent="."]
 
-[node name="Personaje_proto" parent="Scientificos" instance=ExtResource("17_0nbtd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 30)
-normal_dialog = PackedStringArray("Sup")
-scientist = true
-Zone = 1
+[node name="Kela" parent="Scientificos" instance=ExtResource("17_navra")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5806, 0, -24.8107)
+
+[node name="Obvod" parent="Scientificos" instance=ExtResource("18_luhhm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8997, 0, -17.7822)
+
+[node name="Qark" parent="Scientificos" instance=ExtResource("19_fh13f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.6456, 0, 13.6743)
+
+[node name="Kring" parent="Scientificos" instance=ExtResource("30_iexy4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, 27)
+
+[node name="ObjetosClave" type="Node3D" parent="."]
+
+[node name="Globo" parent="ObjetosClave" instance=ExtResource("23_18clu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.117, 0, 4.59843)
+
+[node name="Gorra" parent="ObjetosClave" instance=ExtResource("24_4wdv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1394, 0, 4.21579)
+
+[node name="Piedrita" parent="ObjetosClave" instance=ExtResource("25_d46x8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6655, 0, 34.3727)
+
+[node name="Pelota" parent="ObjetosClave" instance=ExtResource("26_3l05q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4482, 0, -13.8276)
+
+[node name="Perrito" parent="ObjetosClave" instance=ExtResource("27_x28ej")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.574, 0, 14.4286)
+
+[node name="Pogo" parent="ObjetosClave" instance=ExtResource("28_1jxku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.47285, 0, -4.37798)
+
+[node name="Refresco" parent="ObjetosClave" instance=ExtResource("29_1dgkn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8267, 0, -24.3039)
+
+[node name="Tortuga" parent="ObjetosClave" instance=ExtResource("30_e68xj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.086, 0, -13.3886)
+
+[node name="Casas" type="Node3D" parent="."]
+
+[node name="HouseProto" parent="Casas" instance=ExtResource("20_fh13f")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 14.1806, 0.2, 14.1532)
+
+[node name="HouseProto2" parent="Casas" instance=ExtResource("23_4kbfs")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 14.3651, 0.15, -14.4822)
+
+[node name="HouseProto3" parent="Casas" instance=ExtResource("24_f17e3")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -15, 0.15, -25)
+
+[node name="HouseProto4" parent="Casas" instance=ExtResource("25_x2olw")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -24, 0.15, 24)
+
+[node name="HouseProto5" parent="Casas" instance=ExtResource("42_qg546")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -14.5655, 0.15, 33.2932)
+
+[node name="HouseProto6" parent="Casas" instance=ExtResource("42_qg546")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -24.1074, 0.15, 14.1988)
+
+[node name="HouseProto7" parent="Casas" instance=ExtResource("43_pf35h")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 14.2318, 0.15, 24.2709)
+
+[node name="HouseProto8" parent="Casas" instance=ExtResource("43_pf35h")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 24.1006, 0.15, 14.37)
+
+[node name="HouseProto9" parent="Casas" instance=ExtResource("44_iexy4")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 23.8098, 0.15, -4.56626)
+
+[node name="HouseProto10" parent="Casas" instance=ExtResource("44_iexy4")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.89242, 0.15, -23.8913)
+
+[node name="HouseProto11" parent="Casas" instance=ExtResource("45_pf35h")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -34, 0.15, -24)
+
+[node name="HouseProto12" parent="Casas" instance=ExtResource("45_pf35h")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -24.0521, 0.15, -14.3477)
 
 [node name="Marcadores" type="Node3D" parent="."]
 
@@ -455,7 +691,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.0049, 0, 37.0204)
 enable_in = true
 
 [node name="AudioManager" parent="." instance=ExtResource("12_jhx03")]
-stream = ExtResource("13_o8fc1")
+stream = ExtResource("25_rup4s")
 
 [node name="DayAnimations" type="AnimationPlayer" parent="."]
 process_mode = 3
@@ -467,7 +703,7 @@ script = ExtResource("15_xo05s")
 [node name="RaceModeManager" type="Node3D" parent="." node_paths=PackedStringArray("transition", "scientist", "scientist_spot", "scientist_return")]
 script = ExtResource("21_7iits")
 transition = NodePath("../TransitionComponent")
-scientist = NodePath("../Personajes/Dr_Kring")
+scientist = NodePath("../Scientificos/Kring")
 scientist_spot = NodePath("../Marcadores/SilmusInventor")
 scientist_return = NodePath("../Marcadores/KringeReturn")
 
@@ -552,18 +788,67 @@ libraries = {
 autoplay = "AnimLibrary/walking"
 
 [node name="3dTimedSpawn" parent="RaceModeManager" instance=ExtResource("28_0nbtd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.1924, 8, 41.7046)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8076, 8, 41.7046)
 
 [node name="3dTimedSpawn2" parent="RaceModeManager" instance=ExtResource("28_0nbtd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0324, 8, 41.7046)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9676, 8, 41.7046)
 
 [node name="3dTimedSpawn3" parent="RaceModeManager" instance=ExtResource("28_0nbtd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.6731, 8, 45.6823)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.3269, 8, 45.6823)
+
+[node name="3dTimedSpawn4" parent="RaceModeManager" instance=ExtResource("28_0nbtd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0744, 8, 41.7046)
+
+[node name="3dTimedSpawn5" parent="RaceModeManager" instance=ExtResource("28_0nbtd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2344, 8, 41.7046)
+
+[node name="3dTimedSpawn6" parent="RaceModeManager" instance=ExtResource("28_0nbtd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5937, 8, 45.6823)
+
+[node name="WIN!!!" type="Control" parent="." node_paths=PackedStringArray("transition")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("58_npbic")
+transition = NodePath("../TransitionComponent")
+
+[node name="ColorRect" type="ColorRect" parent="WIN!!!"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.690196, 0.662745, 0.894118, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WIN!!!"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("59_e6ckp")
+theme_override_font_sizes/normal_font_size = 256
+bbcode_enabled = true
+text = "[wave]YOU WON![/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WIN!!!"]
+libraries = {
+&"": SubResource("AnimationLibrary_5hl1e")
+}
 
 [connection signal="DayEnd" from="Player" to="DayAnimations" method="_on_player_day_end"]
 [connection signal="StartRace" from="Player" to="Floor/RaceBarrier" method="_on_player_start_race"]
 [connection signal="StartRace" from="Player" to="Floor/GoalBarrier" method="_on_player_start_race"]
 [connection signal="StartRace" from="Player" to="RaceModeManager" method="_on_player_start_race"]
+[connection signal="WIN" from="Floor/GoalBarrier" to="WIN!!!" method="_on_goal_barrier_win"]
 [connection signal="body_entered" from="Floor/GoalBarrier/Area3D" to="Floor/GoalBarrier" method="_on_area_3d_body_entered"]
 [connection signal="TweenDone" from="RaceModeManager/Agua" to="RaceModeManager/Agua" method="_on_tween_done"]
 [connection signal="TweenDone" from="RaceModeManager/Aire" to="RaceModeManager/Aire" method="_on_tween_done"]

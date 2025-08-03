@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://6djlifc2ab7g"]
+
+[ext_resource type="PackedScene" uid="uid://c5hki68aq0kpt" path="res://scenes/characters/personaje_proto.tscn" id="1_wg3yc"]
+[ext_resource type="Texture2D" uid="uid://q03jsgpdm7cj" path="res://assets/Aseprites/Niño verde.png" id="2_wg3yc"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v0lqx"]
+viewport_path = NodePath("Sprite/Prompt/SubViewport")
+
+[node name="Personaje_proto" instance=ExtResource("1_wg3yc")]
+normal_dialog = PackedStringArray("Hello Mister!", "I think I lost my pogo stick...", "Would be sweet if you could find it!")
+quest_end = PackedStringArray("SWEEEEEET!!!")
+character_name = "Little Boy"
+Zone = 1
+Number = 2
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_wg3yc")
+
+[node name="Prompt" parent="Sprite" index="0"]
+texture = SubResource("ViewportTexture_v0lqx")

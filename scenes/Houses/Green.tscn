@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://t1sj8b1sm3mo"]
+
+[ext_resource type="PackedScene" uid="uid://dkusjywxcsi4e" path="res://scenes/Houses/house_proto.tscn" id="1_mhq01"]
+[ext_resource type="Texture2D" uid="uid://bhjcif5ad1si3" path="res://assets/Aseprites/Casa generica verde.png" id="2_lrb2c"]
+
+[node name="HouseProto" instance=ExtResource("1_mhq01")]
+texture = ExtResource("2_lrb2c")

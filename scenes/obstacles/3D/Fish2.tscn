@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dk4qbnxhf26fb"]
+
+[ext_resource type="PackedScene" uid="uid://thad1f2coe3q" path="res://scenes/obstacles/3D/3DObstacle.tscn" id="1_v4lfe"]
+[ext_resource type="ArrayMesh" uid="uid://bhto36s5sd8d" path="res://assets/3D/OBJ format/fish.obj" id="2_v4lfe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uixw5"]
+size = Vector3(0.615, 0.3, 0.252)
+
+[node name="3DObstacleProto" instance=ExtResource("1_v4lfe")]
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0117798, 0, 9.15527e-05)
+shape = SubResource("BoxShape3D_uixw5")
+
+[node name="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(3.09, 0, 0, 0, 3.09, 0, 0, 0, 3.09, 0, -0.132068, 0)
+mesh = ExtResource("2_v4lfe")

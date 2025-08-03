@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3ve0lytiysg0"]
+
+[ext_resource type="PackedScene" uid="uid://b8esp8bo8rj1u" path="res://components/key_item_proto.tscn" id="1_fqdaw"]
+[ext_resource type="Texture2D" uid="uid://cfrd4yo1h1xb" path="res://assets/Objetos/Perrit.png" id="2_c3aag"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_c3aag"]
+viewport_path = NodePath("Sprite/Prompt/SubViewport")
+
+[node name="KeyItemProto" instance=ExtResource("1_fqdaw")]
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("2_c3aag")
+
+[node name="Prompt" parent="Sprite" index="0"]
+texture = SubResource("ViewportTexture_c3aag")
+
+[node name="MoveComponent" parent="." index="2"]
+time_to_move = 0.8
+tween_time = 0.5

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm6rj8cqstpcp"]
+
+[ext_resource type="PackedScene" uid="uid://c5hki68aq0kpt" path="res://scenes/characters/personaje_proto.tscn" id="1_1lt13"]
+[ext_resource type="Texture2D" uid="uid://jav5xqh8kboo" path="res://assets/Aseprites/Niña morada.png" id="2_1lt13"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v0lqx"]
+viewport_path = NodePath("Sprite/Prompt/SubViewport")
+
+[node name="Personaje_proto" instance=ExtResource("1_1lt13")]
+normal_dialog = PackedStringArray("Hello mister...", "Can you help me find my balloon?", "I would really apreciate it!")
+quest_end = PackedStringArray("Thanks a lot mister")
+character_name = "Little Girl"
+Zone = 4
+Number = 1
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_1lt13")
+
+[node name="Prompt" parent="Sprite" index="0"]
+texture = SubResource("ViewportTexture_v0lqx")

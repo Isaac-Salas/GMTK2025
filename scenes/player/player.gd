@@ -270,7 +270,7 @@ func start_race_mode():
 	if music != null:
 		music.fade(-80.0,1.0)
 		await music.fade_audio.finished
-		music.startplay(music.BURN_THE_WORLD_WALTZ_)
+		music.startplay(music.ROCKET_POWER)
 		music.fade(-5.0, 1.0)
 	StartRace.emit(true)
 	race_mode = true
@@ -288,7 +288,7 @@ func go_to_home():
 		if music != null:
 			music.fade(-80.0,1.0)
 			await music.fade_audio.finished
-			music.startplay(music.EVENING)
+			music.startplay(music.BEAUTY_FLOW)
 			music.fade(-5.0, 1.0)
 		await transition.animation_player.animation_finished
 		self.global_position = house_marker.global_position

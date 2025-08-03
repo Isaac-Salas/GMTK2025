@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyyaesbqy1hib"]
+
+[ext_resource type="PackedScene" uid="uid://thad1f2coe3q" path="res://scenes/obstacles/3D/3DObstacle.tscn" id="1_fxhjf"]
+[ext_resource type="ArrayMesh" uid="uid://cij4eyakpxsb1" path="res://assets/3D/OBJ format/spike-block.obj" id="2_aphag"]
+
+[node name="3DObstacleProto" instance=ExtResource("1_fxhjf")]
+
+[node name="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1.12, 0, 0, 0, 1.12, 0, 0, 0, 1.12, 0, -0.55, 0)
+mesh = ExtResource("2_aphag")
