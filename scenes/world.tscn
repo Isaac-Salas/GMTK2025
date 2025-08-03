@@ -280,7 +280,6 @@ Dialog = PackedStringArray()
 
 [node name="Player" parent="." node_paths=PackedStringArray("house_marker", "race_marker", "transition", "music") instance=ExtResource("2_qfnet")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.237, 0.5, 33.2014)
-override = true
 ardillas = 4
 chicles = 4
 days_to_explore = 1
@@ -422,6 +421,10 @@ Numero = 1
 
 [node name="Dr_Kring" parent="Personajes" instance=ExtResource("19_ctatt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, 25)
+quest_completed = false
+
+[node name="Dr_Kring2" parent="Personajes" instance=ExtResource("19_ctatt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.1728, 0, 25)
 quest_completed = false
 
 [node name="3DObstacleProto" parent="Personajes" instance=ExtResource("17_ts3gi")]

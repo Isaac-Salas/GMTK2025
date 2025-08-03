@@ -186,8 +186,10 @@ func interacted_eval(interacted_with : String):
 		SaveManager.save_game()
 		update_counts()
 	if interacted_with == "Chicle":
+		print("De ", SaveManager.Chicles_TOTAL)
 		SaveManager.setter("Chicles_TOTAL", SaveManager.Chicles_TOTAL + 1)
 		chicles += 1
+		print("Pasamos a ", SaveManager.Chicles_TOTAL)
 		SaveManager.save_game()
 		update_counts()
 
