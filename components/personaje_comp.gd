@@ -11,6 +11,7 @@ class_name PersonajeComponent
 @export var quest_end : PackedStringArray
 
 @export var character_name : String
+@export var scientist : bool
 @export var timeout_to_move : float = 2.0
 @export var move_duration : float = 1.0
 @export var range_of_movement : float = 5.0
@@ -22,6 +23,7 @@ class_name PersonajeComponent
 @export var interact_player : bool = true
 @export var force_dialog : bool
 
+@onready var scientist_data : Array
 @onready var sprite_animations: AnimationPlayer = $Sprite/SpriteAnimations
 @onready var texture_rect: TextureRect = $UIStuff/TextureRect
 @onready var dialog_box: DialogComponent = $UIStuff/DialogBox
@@ -49,6 +51,37 @@ func _ready() -> void:
 		quest_complete_dialog.Dialog = quest_end
 	if force_dialog == true:
 		start_dialog(dialog_box)
+	if scientist == true:
+		science_full_check()
+
+	
+		
+
+func science_full_check():
+	var test = scientist_lookup(Zone)
+	var check = check_array(test, 3)
+	if check == true:
+			quest_item_in_hand = true
+
+func scientist_lookup(zone : int):
+	SaveManager.load_game()
+	var NewArray : Array
+	for i in 4:
+		print(i)
+		var construct : String = "Chicle" + str(zone) +"_"+ str(i)
+		var value = SaveManager.get(construct)
+		if value != null:
+			NewArray.append(value)
+	return NewArray
+
+func check_array(array : Array[bool], expected_truth : int):
+	var count = 0
+	for value in array:
+		if value == true:
+			count += 1
+	if count == expected_truth:
+		return true
+
 
 func grab_toggle(state : bool):
 	match  state:
@@ -59,6 +92,7 @@ func grab_toggle(state : bool):
 
 func  _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("interact") and can_interact == true:
+		science_full_check()
 		if menu_behaviour == false:
 			if quest_item_in_hand == true and quest_completed == false:
 				start_dialog(quest_complete_dialog)

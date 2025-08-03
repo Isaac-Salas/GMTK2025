@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnamevl3t70f5"]
+
+[ext_resource type="Script" uid="uid://bko6oh40nrxel" path="res://components/rand_timer_component.gd" id="1_wxvmx"]
+
+[node name="RandTimerComp" type="Timer"]
+script = ExtResource("1_wxvmx")
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]

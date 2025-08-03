@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://btjahidcpij0l"]
+
+[ext_resource type="Script" uid="uid://druq6qkwh4j5b" path="res://components/3d_timed_spawn.gd" id="1_sbeho"]
+[ext_resource type="PackedScene" uid="uid://c7l4i0dh0bnmm" path="res://components/spawner_component.tscn" id="2_rov6u"]
+[ext_resource type="PackedScene" uid="uid://bnamevl3t70f5" path="res://components/rand_timer_comp.tscn" id="4_oef5l"]
+[ext_resource type="PackedScene" uid="uid://thad1f2coe3q" path="res://scenes/obstacles/3D/3DObstacle.tscn" id="4_rov6u"]
+
+[node name="3dTimedSpawn" type="Node3D"]
+script = ExtResource("1_sbeho")
+
+[node name="SpawnerComponent" parent="." node_paths=PackedStringArray("position_reference") instance=ExtResource("2_rov6u")]
+will_spawn = ExtResource("4_rov6u")
+position_reference = NodePath("..")
+
+[node name="RandTimerComp" parent="." instance=ExtResource("4_oef5l")]
+time_range = 4.0
+
+[connection signal="timeout" from="RandTimerComp" to="." method="_on_rand_timer_comp_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c5hki68aq0kpt"]
+[gd_scene load_steps=15 format=3 uid="uid://c5hki68aq0kpt"]
 
 [ext_resource type="Script" uid="uid://c36w1md4rb5et" path="res://components/personaje_comp.gd" id="1_e3jlt"]
 [ext_resource type="Texture2D" uid="uid://bywqe8vpb6s5c" path="res://assets/Aseprites/Robot tierroso.png" id="2_e3jlt"]
@@ -7,8 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bljhsfid7fwt5" path="res://components/dialog_box.tscn" id="5_ey1ox"]
 [ext_resource type="Texture2D" uid="uid://dj3b7ucebv66q" path="res://assets/dialogbox/background.png" id="5_few2o"]
 [ext_resource type="PackedScene" uid="uid://wa47ch1e726p" path="res://components/move_component.tscn" id="7_v1a4o"]
-[ext_resource type="Script" uid="uid://w5lprc323i55" path="res://components/spawner_component.gd" id="8_6va0f"]
-[ext_resource type="PackedScene" uid="uid://bwlq41to3aofh" path="res://scenes/objects/chicle.tscn" id="9_ey1ox"]
+[ext_resource type="PackedScene" uid="uid://c7l4i0dh0bnmm" path="res://components/spawner_component.tscn" id="8_6va0f"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_e3jlt"]
 viewport_path = NodePath("Sprite/Prompt/SubViewport")
@@ -219,11 +218,8 @@ one_shot = true
 target = NodePath("..")
 sprite_animations = NodePath("../Sprite/SpriteAnimations")
 
-[node name="SpawnerComponent" type="Node3D" parent="." node_paths=PackedStringArray("position_reference")]
-script = ExtResource("8_6va0f")
-will_spawn = ExtResource("9_ey1ox")
+[node name="SpawnerComponent" parent="." node_paths=PackedStringArray("position_reference") instance=ExtResource("8_6va0f")]
 position_reference = NodePath("..")
-spawn_offset_range = 2.0
 
 [connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detect_body_entered"]
 [connection signal="body_exited" from="PlayerDetect" to="." method="_on_player_detect_body_exited"]

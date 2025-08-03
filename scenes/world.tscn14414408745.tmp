@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://cim5ukairdcvq"]
+[gd_scene load_steps=47 format=3 uid="uid://cim5ukairdcvq"]
 
 [ext_resource type="Texture2D" uid="uid://boh8i64e6ower" path="res://assets/Mundo/Mundo.png" id="1_4wyf3"]
 [ext_resource type="Script" uid="uid://n6gujomtfngi" path="res://scenes/world.gd" id="1_qfnet"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://57gf4vc0lkv8" path="res://components/audio_manager.tscn" id="12_jhx03"]
 [ext_resource type="AudioStream" uid="uid://odk150h5we1o" path="res://assets/Music/Evening.mp3" id="13_o8fc1"]
 [ext_resource type="Script" uid="uid://swirjnlfh6ki" path="res://scenes/day_animations.gd" id="15_xo05s"]
-[ext_resource type="PackedScene" uid="uid://c5hki68aq0kpt" path="res://scenes/characters/personaje_proto.tscn" id="17_0nbtd"]
 [ext_resource type="PackedScene" uid="uid://blku7ef3a025r" path="res://scenes/characters/dr_kring.tscn" id="19_ctatt"]
 [ext_resource type="Script" uid="uid://dfruey5ap2pxi" path="res://scenes/race_mode_manager.gd" id="21_7iits"]
 [ext_resource type="Script" uid="uid://dant3t764qls6" path="res://scenes/racer_comp.gd" id="22_ctatt"]
@@ -430,12 +429,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.1728, 0, 25)
 quest_completed = false
 
 [node name="Scientificos" type="Node3D" parent="."]
-
-[node name="Personaje_proto" parent="Scientificos" instance=ExtResource("17_0nbtd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 30)
-normal_dialog = PackedStringArray("Sup")
-scientist = true
-Zone = 1
 
 [node name="Marcadores" type="Node3D" parent="."]
 

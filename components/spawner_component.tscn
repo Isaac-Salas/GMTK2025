@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7l4i0dh0bnmm"]
+
+[ext_resource type="Script" uid="uid://w5lprc323i55" path="res://components/spawner_component.gd" id="1_o2w1o"]
+[ext_resource type="PackedScene" uid="uid://bwlq41to3aofh" path="res://scenes/objects/chicle.tscn" id="2_8awuy"]
+
+[node name="SpawnerComponent" type="Node3D"]
+script = ExtResource("1_o2w1o")
+will_spawn = ExtResource("2_8awuy")
+spawn_offset_range = 2.0

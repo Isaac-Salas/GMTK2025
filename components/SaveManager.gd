@@ -99,6 +99,9 @@ func save():
 	}
 	return save_dict
 
+
+
+
 func reset_progress():
 	var savefile = save()
 	for i in savefile:

@@ -6,21 +6,34 @@ extends Node3D
 @export var scientist : PersonajeComponent
 @export var scientist_spot : Marker3D
 @export var scientist_return : Marker3D
+@onready var allspawners : Array[TimeSpawnerComponent]
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	var buffer = get_children()
+	for item in buffer:
+		if item is TimeSpawnerComponent:
+			allspawners.append(item)
+	print(allspawners)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
+func activate_all_timers(array : Array[TimeSpawnerComponent]):
+	for spawner in array:
+		spawner.rand_timer_comp.start_rand()
+
+func deactivate_all_timers(array : Array[TimeSpawnerComponent]):
+	for spawner in array:
+		spawner.rand_timer_comp.stop()
 
 func _on_player_start_race(state: bool) -> void:
 	match state:
 		true:
+			activate_all_timers(allspawners)
 			activate(agua)
 			activate(aire)
 			activate(piedra)
@@ -29,6 +42,7 @@ func _on_player_start_race(state: bool) -> void:
 			scientist.interact_player = false
 			scientist.global_position = scientist_spot.global_position
 		false:
+			deactivate_all_timers(allspawners)
 			deactivate(agua)
 			deactivate(aire)
 			deactivate(piedra)
